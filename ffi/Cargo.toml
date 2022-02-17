@@ -1,0 +1,23 @@
+[package]
+name = "ffi"
+version = "1.0.0"
+edition = "2018"
+license = "MPL-2.0"
+
+[lib]
+name = "pop_analytics_panel"
+crate-type = [ "cdylib"]
+
+[build-dependencies]
+cdylib-link-lines = "0.1.4"
+
+[dependencies]
+glib = "0.15.5"
+gtk = "0.15.3"
+gtk-sys = "0.15.3"
+libc = "0.2.118"
+relm = "0.23.0"
+i18n-embed = "0.13.3"
+
+[dependencies.pop-analytics-panel]
+path = "../"

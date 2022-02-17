@@ -1,0 +1,5 @@
+{
+    "editor.wordBasedSuggestions": false,
+    "editor.quickSuggestionsDelay": 200,
+    "rust-analyzer.checkOnSave.command": "clippy",
+}
