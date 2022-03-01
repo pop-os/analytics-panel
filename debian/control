@@ -17,12 +17,12 @@ Depends:
   ${misc:Depends},
   ${shlibs:Depends}
 Description: Pop desktop settings widget library
- Shared library for C which provides the Pop!_OS support panel as a GTK widget.
+ Shared library for C which provides the Pop!_OS analytics panel as a GTK widget.
 
 Package: libpop-analytics-panel-dev
 Architecture: all
 Depends:
   libpop-analytics-panel (= ${binary:Version}),
   ${misc:Depends}
-Description: Pop support panel library header
- The C header required to link to the Pop!_OS support panel library.
+Description: Pop analytics panel library header
+ The C header required to link to the Pop!_OS analytics panel library.

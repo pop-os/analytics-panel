@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: pop-support-panel
-Source: https://github.com/pop-os/support-panel
+Upstream-Name: pop-analytics-panel
+Source: https://github.com/pop-os/analytics-panel
 
 Files: *
 Copyright: Copyright 2022 System76
