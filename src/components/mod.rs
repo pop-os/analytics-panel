@@ -3,6 +3,7 @@
 
 pub mod dialog;
 pub mod panel;
+pub mod summary;
 
 use gtk::prelude::*;
 use relm::StreamHandle;

@@ -27,7 +27,7 @@ fn gtk() -> anyhow::Result<()> {
     app.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
 
-        let panel = relm::init::<Panel>(window.clone().upcast()).unwrap();
+        let panel = relm::create_component::<Panel>(window.clone().upcast());
 
         window.add(panel.widget());
         window.show_all();

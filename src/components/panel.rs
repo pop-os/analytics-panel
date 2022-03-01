@@ -10,6 +10,7 @@ use super::dialog::{self, Variant};
 pub struct Model {
     _channel: Channel<Message>,
     dialog: relm::Component<super::dialog::Widget>,
+    summary: relm::Component<super::summary::Widget>,
     operation: Option<Operation>,
     background: relm::Sender<Message>,
 }
@@ -25,12 +26,10 @@ pub enum Message {
     Delete,
     DeleteDialog,
     DeleteRequest,
-    DisplaySample,
     Download,
     DownloadComplete,
     DownloadProgress(f32),
     OpenDataDir,
-    OpenWebpage(&'static str),
     Toggle,
     TryAgain,
 }
@@ -68,6 +67,9 @@ impl relm::Widget for Widget {
 
         use crate::clamp::BinClamp;
         self.widgets.root.bin_clamp(300, 600, 80);
+        self.widgets.content.remove(&self.widgets.options);
+        self.widgets.content.add(self.model.summary.widget());
+        self.widgets.content.add(&self.widgets.options);
     }
 
     fn update(&mut self, message: Message) {
@@ -116,16 +118,10 @@ impl relm::Widget for Widget {
                     .set_visible_child(&self.widgets.download_label);
             }
 
-            Message::DisplaySample => {}
-
             Message::OpenDataDir => {
                 if let Some(analytics_dir) = crate::analytics_dir() {
                     crate::misc::xdg_open(analytics_dir);
                 }
-            }
-
-            Message::OpenWebpage(url) => {
-                crate::misc::xdg_open(url);
             }
 
             Message::TryAgain => match self.model.operation {
@@ -146,6 +142,7 @@ impl relm::Widget for Widget {
         Model {
             _channel,
             dialog: super::message_dialog(&window, relm.stream().clone(), 480),
+            summary: relm::create_component::<super::summary::Widget>(()),
             operation: None,
             background: sender,
         }
@@ -156,38 +153,14 @@ impl relm::Widget for Widget {
         gtk::ScrolledWindow {
             hscrollbar_policy: gtk::PolicyType::Never,
 
+            #[name="content"]
             gtk::Box {
                 margin_bottom: 48,
                 margin_top: 48,
                 halign: gtk::Align::Center,
                 orientation: gtk::Orientation::Vertical,
 
-                gtk::Label {
-                    xalign: 0.0,
-                    label: &fl!("hp-analytics-description"),
-                    margin_bottom: 24,
-                },
-
-                gtk::LinkButton {
-                    halign: gtk::Align::Start,
-                    label: &fl!("data-sample"),
-                    margin_bottom: 24,
-                    activate_link => (Message::DisplaySample, gtk::Inhibit(false)),
-                },
-
-                gtk::LinkButton {
-                    halign: gtk::Align::Start,
-                    label: &fl!("hp-privacy-policy"),
-                    activate_link => (Message::OpenWebpage(""), gtk::Inhibit(false)),
-                },
-
-                gtk::LinkButton {
-                    halign: gtk::Align::Start,
-                    label: &fl!("pop-privacy-policy"),
-                    activate_link => (Message::OpenWebpage(""), gtk::Inhibit(false)),
-                    margin_bottom: 24,
-                },
-
+                #[name="options"]
                 gtk::ListBox {
                     selection_mode: gtk::SelectionMode::None,
 
