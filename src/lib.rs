@@ -6,6 +6,7 @@ extern crate cascade;
 
 pub mod components;
 
+mod clamp;
 mod localize;
 mod misc;
 

@@ -65,6 +65,9 @@ impl relm::Widget for Widget {
             ..add_widget(&self.widgets.download_button);
             ..add_widget(&self.widgets.delete_button);
         };
+
+        use crate::clamp::BinClamp;
+        self.widgets.root.bin_clamp(300, 600, 80);
     }
 
     fn update(&mut self, message: Message) {
@@ -149,118 +152,123 @@ impl relm::Widget for Widget {
     }
 
     relm::view! {
-        gtk::Box {
-            margin_bottom: 48,
-            margin_top: 48,
-            halign: gtk::Align::Center,
-            orientation: gtk::Orientation::Vertical,
+        #[name="root"]
+        gtk::ScrolledWindow {
+            hscrollbar_policy: gtk::PolicyType::Never,
 
-            gtk::Label {
-                xalign: 0.0,
-                label: &fl!("hp-analytics-description"),
-                margin_bottom: 24,
-            },
+            gtk::Box {
+                margin_bottom: 48,
+                margin_top: 48,
+                halign: gtk::Align::Center,
+                orientation: gtk::Orientation::Vertical,
 
-            gtk::LinkButton {
-                halign: gtk::Align::Start,
-                label: &fl!("data-sample"),
-                margin_bottom: 24,
-                activate_link => (Message::DisplaySample, gtk::Inhibit(false)),
-            },
-
-            gtk::LinkButton {
-                halign: gtk::Align::Start,
-                label: &fl!("hp-privacy-policy"),
-                activate_link => (Message::OpenWebpage(""), gtk::Inhibit(false)),
-            },
-
-            gtk::LinkButton {
-                halign: gtk::Align::Start,
-                label: &fl!("pop-privacy-policy"),
-                activate_link => (Message::OpenWebpage(""), gtk::Inhibit(false)),
-                margin_bottom: 24,
-            },
-
-            gtk::ListBox {
-                selection_mode: gtk::SelectionMode::None,
-
-                InfoBox {
-                    gtk::Box {
-                        orientation: gtk::Orientation::Vertical,
-                        halign: gtk::Align::Start,
-                        hexpand: true,
-                        valign: gtk::Align::Center,
-
-                        gtk::Label {
-                            ellipsize: gtk::pango::EllipsizeMode::End,
-                            label: &fl!("hp-analytics-toggle-header"),
-                            xalign: 0.0,
-                        },
-
-                        gtk::Label {
-                            ellipsize: gtk::pango::EllipsizeMode::End,
-                            label: &fl!("hp-analytics-toggle-description"),
-                            xalign: 0.0,
-                        }
-                    },
-
-                    #[name="toggle"]
-                    gtk::Switch {
-                        valign: gtk::Align::Center,
-                        changed_active => Message::Toggle
-                    }
+                gtk::Label {
+                    xalign: 0.0,
+                    label: &fl!("hp-analytics-description"),
+                    margin_bottom: 24,
                 },
 
-                InfoBox {
-                    gtk::Label {
-                        halign: gtk::Align::Start,
-                        hexpand: true,
-                        valign: gtk::Align::Center,
-                        ellipsize: gtk::pango::EllipsizeMode::End,
-                        label: &fl!("delete-data-option"),
-                        xalign: 0.0,
-                    },
-
-                    #[name="delete_button"]
-                    gtk::Button {
-                        label: &fl!("delete"),
-                        clicked => Message::DeleteRequest,
-                    }
+                gtk::LinkButton {
+                    halign: gtk::Align::Start,
+                    label: &fl!("data-sample"),
+                    margin_bottom: 24,
+                    activate_link => (Message::DisplaySample, gtk::Inhibit(false)),
                 },
 
-                InfoBox {
-                    #[name="download_stack"]
-                    gtk::Stack {
-                        halign: gtk::Align::Start,
-                        hexpand: true,
-                        valign: gtk::Align::Center,
+                gtk::LinkButton {
+                    halign: gtk::Align::Start,
+                    label: &fl!("hp-privacy-policy"),
+                    activate_link => (Message::OpenWebpage(""), gtk::Inhibit(false)),
+                },
 
-                        #[name="download_label"]
-                        gtk::Label {
-                            ellipsize: gtk::pango::EllipsizeMode::End,
-                            label: &fl!("download-option"),
-                            xalign: 0.0,
-                        },
+                gtk::LinkButton {
+                    halign: gtk::Align::Start,
+                    label: &fl!("pop-privacy-policy"),
+                    activate_link => (Message::OpenWebpage(""), gtk::Inhibit(false)),
+                    margin_bottom: 24,
+                },
 
-                        #[name="download_progress"]
+                gtk::ListBox {
+                    selection_mode: gtk::SelectionMode::None,
+
+                    InfoBox {
                         gtk::Box {
                             orientation: gtk::Orientation::Vertical,
+                            halign: gtk::Align::Start,
+                            hexpand: true,
+                            valign: gtk::Align::Center,
 
                             gtk::Label {
                                 ellipsize: gtk::pango::EllipsizeMode::End,
-                                label: &fl!("download-option-downloading"),
+                                label: &fl!("hp-analytics-toggle-header"),
                                 xalign: 0.0,
                             },
 
-                            #[name="download_progress_bar"]
-                            gtk::ProgressBar {}
+                            gtk::Label {
+                                ellipsize: gtk::pango::EllipsizeMode::End,
+                                label: &fl!("hp-analytics-toggle-description"),
+                                xalign: 0.0,
+                            }
+                        },
+
+                        #[name="toggle"]
+                        gtk::Switch {
+                            valign: gtk::Align::Center,
+                            changed_active => Message::Toggle
                         }
                     },
 
-                    #[name="download_button"]
-                    gtk::Button {
-                        label: &fl!("download"),
-                        clicked => Message::Download
+                    InfoBox {
+                        gtk::Label {
+                            halign: gtk::Align::Start,
+                            hexpand: true,
+                            valign: gtk::Align::Center,
+                            ellipsize: gtk::pango::EllipsizeMode::End,
+                            label: &fl!("delete-data-option"),
+                            xalign: 0.0,
+                        },
+
+                        #[name="delete_button"]
+                        gtk::Button {
+                            label: &fl!("delete"),
+                            clicked => Message::DeleteRequest,
+                        }
+                    },
+
+                    InfoBox {
+                        #[name="download_stack"]
+                        gtk::Stack {
+                            halign: gtk::Align::Start,
+                            hexpand: true,
+                            valign: gtk::Align::Center,
+
+                            #[name="download_label"]
+                            gtk::Label {
+                                ellipsize: gtk::pango::EllipsizeMode::End,
+                                label: &fl!("download-option"),
+                                xalign: 0.0,
+                            },
+
+                            #[name="download_progress"]
+                            gtk::Box {
+                                orientation: gtk::Orientation::Vertical,
+
+                                gtk::Label {
+                                    ellipsize: gtk::pango::EllipsizeMode::End,
+                                    label: &fl!("download-option-downloading"),
+                                    xalign: 0.0,
+                                },
+
+                                #[name="download_progress_bar"]
+                                gtk::ProgressBar {}
+                            }
+                        },
+
+                        #[name="download_button"]
+                        gtk::Button {
+                            label: &fl!("download"),
+                            clicked => Message::Download
+                        }
                     }
                 }
             }
