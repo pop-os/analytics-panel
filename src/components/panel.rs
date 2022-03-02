@@ -51,8 +51,7 @@ impl Widget {
     }
 
     fn toggle_analytics(&mut self, enable: bool) {
-        let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(crate::toggle(tx, enable));
+        glib::MainContext::default().spawn_local(crate::toggle(enable));
     }
 }
 
@@ -142,7 +141,7 @@ impl relm::Widget for Widget {
         Model {
             _channel,
             dialog: super::message_dialog(&window, relm.stream().clone(), 480),
-            summary: relm::create_component::<super::summary::Widget>(()),
+            summary: relm::create_component::<super::summary::Widget>(false),
             operation: None,
             background: sender,
         }
@@ -249,7 +248,7 @@ impl relm::Widget for Widget {
     }
 }
 
-#[relm_derive::widget]
+#[relm_derive::widget(pub)]
 impl relm::Widget for InfoBox {
     fn model(_: ()) {}
 

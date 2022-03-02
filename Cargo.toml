@@ -20,5 +20,6 @@ glib = "0.15.5"
 gio = "0.15.5"
 async-std = "1.10.0"
 dirs = "4.0.0"
+concat-in-place = "1.1.0"
 
 [features]

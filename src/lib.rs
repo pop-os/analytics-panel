@@ -77,6 +77,6 @@ async fn download(sender: Sender<PanelMessage>) {
 }
 
 /// Toggle collection of analytics data.
-async fn toggle(sender: Sender<PanelMessage>, enable: bool) {
+async fn toggle(enable: bool) {
     println!("TODO: analytics toggled");
 }

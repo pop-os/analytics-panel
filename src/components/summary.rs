@@ -1,12 +1,17 @@
 use crate::fl;
+
+use concat_in_place::strcat;
 use gtk::prelude::*;
 
-pub struct Model {}
+pub struct Model {
+    show_toggle: bool,
+}
 
 #[derive(relm_derive::Msg)]
 pub enum Message {
     DisplaySample,
     OpenWebpage(&'static str),
+    Toggle,
 }
 
 #[relm_derive::widget]
@@ -23,22 +28,28 @@ impl relm::Widget for Widget {
             gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
         );
 
+        if !self.model.show_toggle {
+            self.root().remove(&self.widgets.toggle_box);
+        }
+
         self.widgets
             .link1
             .style_context()
             .add_class("analytics-link");
+
         self.widgets
             .link2
             .style_context()
             .add_class("analytics-link");
+
         self.widgets
             .link3
             .style_context()
             .add_class("analytics-link");
     }
 
-    fn model(relm: &relm::Relm<Self>, args: ()) -> Model {
-        Model {}
+    fn model(_: &relm::Relm<Self>, show_toggle: bool) -> Model {
+        Model { show_toggle }
     }
 
     fn update(&mut self, message: Message) {
@@ -48,12 +59,39 @@ impl relm::Widget for Widget {
             Message::OpenWebpage(url) => {
                 crate::misc::xdg_open(url);
             }
+
+            Message::Toggle => {
+                let enable = self.widgets.toggle.is_active();
+                glib::MainContext::default().spawn_local(crate::toggle(enable));
+            }
         }
     }
 
     relm::view! {
         gtk::Box {
             orientation: gtk::Orientation::Vertical,
+
+            #[name="toggle_box"]
+            gtk::Box {
+                hexpand: true,
+                margin_bottom: 24,
+
+                gtk::Label {
+                    ellipsize: gtk::pango::EllipsizeMode::End,
+                    halign: gtk::Align::Start,
+                    hexpand: true,
+                    label: &*strcat!("<b>" fl!("hp-analytics-toggle-header").as_str() "</b>"),
+                    use_markup: true,
+                    valign: gtk::Align::Center,
+                    xalign: 0.0,
+                },
+
+                #[name="toggle"]
+                gtk::Switch {
+                    changed_active => Message::Toggle,
+                    valign: gtk::Align::Center,
+                }
+            },
 
             gtk::Label {
                 xalign: 0.0,

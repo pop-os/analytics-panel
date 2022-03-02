@@ -25,12 +25,9 @@ PKGCONFIG=target/$(PACKAGE).pc
 FFI=target/$(TARGET)/lib$(PACKAGE).so
 FFI=target/$(TARGET)/lib$(PACKAGE).so
 
-all: Cargo.toml Cargo.lock src/lib.rs extract-vendor pkgconfig
+all: Cargo.toml Cargo.lock src/lib.rs extract-vendor
 	cargo build $(ARGS)
 	cargo build $(ARGS) --manifest-path ffi/Cargo.toml
-	cargo run -p tools --bin pkgconfig -- $(PACKAGE) $(libdir) $(includedir)
-
-pkgconfig: ffi tools/src/pkgconfig.rs
 	cargo run -p tools --bin pkgconfig -- $(PACKAGE) $(libdir) $(includedir)
 
 clean:
@@ -56,7 +53,6 @@ endif
 INSTALL_CLIB=$(DESTDIR)$(libdir)/lib$(PACKAGE).so
 INSTALL_HEADER=$(DESTDIR)/$(includedir)/${PACKAGE}.h
 INSTALL_PKGCONF=$(DESTDIR)$(libdir)/pkgconfig/$(PACKAGE).pc
-INSTALL_POLICY=$(DESTDIR)$(prefix)/share/polkit-1/actions/${POLICY_FILE}
 
 install:
 	install -Dm0644 $(PKGCONFIG) $(INSTALL_PKGCONF)

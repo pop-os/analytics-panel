@@ -3,6 +3,8 @@
 
 use super::panel;
 use crate::fl;
+
+use concat_in_place::strcat;
 use gtk::prelude::*;
 use relm::StreamHandle;
 
@@ -45,7 +47,7 @@ impl Widget {
     }
 
     fn configure_view(&self, header: &str, description: &str, close: &str, accept: Option<&str>) {
-        self.widgets.header.set_label(&format!("<b>{header}</b>"));
+        self.widgets.header.set_label(&strcat!("<b>" header "</b>"));
         self.widgets.description.set_label(description);
         self.widgets.close_button.set_label(close);
 
