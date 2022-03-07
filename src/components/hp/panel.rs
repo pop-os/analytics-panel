@@ -37,21 +37,21 @@ pub enum Message {
 impl Widget {
     fn delete_data(&self) {
         let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(crate::delete(tx));
+        glib::MainContext::default().spawn_local(super::delete(tx));
     }
 
     fn delete_data_request(&self) {
         let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(crate::delete_requested(tx));
+        glib::MainContext::default().spawn_local(super::delete_requested(tx));
     }
 
     fn download_data(&self) {
         let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(crate::download(tx));
+        glib::MainContext::default().spawn_local(super::download(tx));
     }
 
     fn toggle_analytics(&mut self, enable: bool) {
-        glib::MainContext::default().spawn_local(crate::toggle(enable));
+        glib::MainContext::default().spawn_local(super::toggle(enable));
     }
 }
 
@@ -118,7 +118,7 @@ impl relm::Widget for Widget {
             }
 
             Message::OpenDataDir => {
-                if let Some(analytics_dir) = crate::analytics_dir() {
+                if let Some(analytics_dir) = super::analytics_dir() {
                     crate::misc::xdg_open(analytics_dir);
                 }
             }

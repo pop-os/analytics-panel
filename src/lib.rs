@@ -12,71 +12,22 @@ mod misc;
 
 pub use self::localize::localizer;
 
-use components::panel::Message as PanelMessage;
-use relm::Sender;
-use std::fs;
-use std::time::Duration;
+use gtk::prelude::*;
 
-pub enum Status {
-    Success,
-    Failed,
+pub fn attach_panel(container: &gtk::Container, window: gtk::Window) {
+    let panel = relm::create_component::<components::hp::Panel>(window);
+
+    container.add(panel.widget());
+    container.connect_destroy(move |_| {
+        let _panel = &panel;
+    });
 }
 
-fn analytics_dir() -> Option<std::path::PathBuf> {
-    if let Some(home_dir) = dirs::home_dir() {
-        return Some(home_dir.join(".hp-analytics"));
-    }
+pub fn attach_summary(container: &gtk::Container) {
+    let component = relm::create_component::<components::hp::Summary>(true);
 
-    None
-}
-
-/// Check if analytics data is held remotely.
-async fn check(sender: Sender<PanelMessage>) -> Status {
-    Status::Success
-}
-
-/// Delete analytics data currently held remotely.
-async fn delete(sender: Sender<PanelMessage>) {
-    if let Status::Failed = check(sender.clone()).await {
-        return;
-    }
-
-    println!("TODO: deleting analytics data");
-}
-
-/// Check if analytics data exists that can be deleted.
-async fn delete_requested(sender: Sender<PanelMessage>) {
-    if let Status::Failed = check(sender.clone()).await {
-        return;
-    }
-
-    let _ = sender.send(PanelMessage::DeleteDialog);
-}
-
-/// Download analytics data currently held remotely.
-async fn download(sender: Sender<PanelMessage>) {
-    if let Status::Failed = check(sender.clone()).await {
-        return;
-    }
-
-    println!("TODO: downloading analytics data");
-
-    if let Some(analytics_dir) = analytics_dir() {
-        let _ = fs::create_dir_all(&analytics_dir);
-
-        let mut p = 0.0;
-
-        for _ in 0..10 {
-            p += 0.1;
-            async_std::task::sleep(Duration::from_millis(500)).await;
-            let _ = sender.send(PanelMessage::DownloadProgress(p));
-        }
-    }
-
-    let _ = sender.send(PanelMessage::DownloadComplete);
-}
-
-/// Toggle collection of analytics data.
-async fn toggle(enable: bool) {
-    println!("TODO: analytics toggled");
+    container.add(component.widget());
+    container.connect_destroy(move |_| {
+        let _relm_handle = &component;
+    });
 }

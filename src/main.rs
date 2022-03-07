@@ -1,7 +1,6 @@
 // Copyright 2022 System76 <info@system76.com>
 // SPDX-License-Identifier: MPL-2.0
 
-use components::panel::Widget as Panel;
 use gtk::prelude::*;
 use i18n_embed::DesktopLanguageRequester;
 use pop_analytics_panel::*;
@@ -27,13 +26,11 @@ fn gtk() -> anyhow::Result<()> {
     app.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
 
-        let panel = relm::create_component::<Panel>(window.clone().upcast());
+        attach_panel(window.upcast_ref(), window.clone().upcast());
 
-        window.add(panel.widget());
         window.show_all();
 
         window.connect_delete_event(move |_, _| {
-            let panel = &panel;
             gtk::main_quit();
             gtk::Inhibit(false)
         });

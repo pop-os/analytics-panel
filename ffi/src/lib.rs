@@ -36,16 +36,7 @@ pub extern "C" fn pop_analytics_panel_attach(
         window = gtk::Window::from_glib_none(c_window);
     };
 
-    let component = relm::create_component::<components::panel::Widget>(window);
-
-    let panel_widget = component.widget().clone();
-
-    container.add(&panel_widget);
-
-    // Take ownership of the panel to keep it alive until the container is destroyed.
-    container.connect_destroy(move |_| {
-        let _relm_handle = &component;
-    });
+    attach_panel(&container, window);
 }
 
 #[no_mangle]
@@ -57,10 +48,5 @@ pub extern "C" fn pop_analytics_panel_summary_attach(c_container: *mut GtkContai
         container = gtk::Container::from_glib_none(c_container);
     }
 
-    let component = relm::create_component::<components::summary::Widget>(true);
-    let widget = component.widget().clone();
-    container.add(&widget);
-    container.connect_destroy(move |_| {
-        let _relm_handle = &component;
-    });
+    attach_summary(&container);
 }

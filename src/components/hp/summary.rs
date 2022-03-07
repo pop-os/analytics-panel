@@ -62,7 +62,7 @@ impl relm::Widget for Widget {
 
             Message::Toggle => {
                 let enable = self.widgets.toggle.is_active();
-                glib::MainContext::default().spawn_local(crate::toggle(enable));
+                glib::MainContext::default().spawn_local(super::toggle(enable));
             }
         }
     }
