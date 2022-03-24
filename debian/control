@@ -5,6 +5,7 @@ Maintainer: System76 <info@system76.com>
 Build-Depends:
   debhelper (>=9),
   cargo,
+  just,
   rustc,
   libgtk-3-dev,
   pkg-config,

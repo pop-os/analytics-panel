@@ -1,41 +1,37 @@
-#!/usr/bin/just --justfile
-
-# Standard Pop variables
-DESTDIR := ''
+rootdir := ''
 prefix := '/usr'
-DEBUG := '0'
-VENDOR := '0'
-TARGET := if DEBUG == '1' { 'debug' } else { 'release' }
-ARGS_VENDOR := if VENDOR == '1' { '--frozen --offline' } else { '' }
-ARGS_DEBUG := if DEBUG == '1' { '' } else { '--release' }
-ARGS := ARGS_VENDOR + ' ' + ARGS_DEBUG
+clean := '0'
+debug := '0'
+vendor := '0'
+target := if debug == '1' { 'debug' } else { 'release' }
+vendor_args := if vendor == '1' { '--frozen --offline' } else { '' }
+debug_args := if debug == '1' { '' } else { '--release' }
+cargo_args := vendor_args + ' ' + debug_args
 
-# Locations of essential files
 sysconfdir := '/etc'
 bindir := prefix + '/bin'
 includedir := prefix + '/include'
 libdir := prefix + '/lib'
-PACKAGE := 'pop_analytics_panel'
-PKGCONFIG := 'target/' + PACKAGE + '.pc'
-FFI := 'target/' + TARGET + '/lib' + PACKAGE + '.so'
-INSTALL_CLIB := DESTDIR + libdir + '/lib' + PACKAGE + '.so'
-INSTALL_HEADER := DESTDIR + includedir + '/' + PACKAGE + '.h'
-INSTALL_PKGCONF := DESTDIR + libdir + '/pkgconfig/' + PACKAGE + '.pc'
 
-all: extract-vendor
-    cargo build {{ARGS}}
-    cargo build {{ARGS}} --manifest-path ffi/Cargo.toml
-    cargo run -p tools --bin pkgconfig -- {{PACKAGE}} {{libdir}} {{includedir}}
+package := 'pop_analytics_panel'
+path_clib := rootdir + libdir + '/lib' + package + '.so'
+path_header := rootdir + includedir + '/' + package + '.h'
+path_pkgconfig := rootdir + libdir + '/pkgconfig/' + package + '.pc'
 
-install:
-    install -Dm0644 target/{{TARGET}}/lib{{PACKAGE}}.so {{INSTALL_CLIB}}
-    install -Dm0644 data/{{PACKAGE}}.h {{INSTALL_HEADER}}
-    install -Dm0644 {{PKGCONFIG}} {{INSTALL_PKGCONF}}
+# Compiles all components of the library.
+all: compile_clib compile_pkgconfig
 
-uninstall:
-    rm {{INSTALL_CLIB}} {{INSTALL_HEADER}} {{INSTALL_PKGCONF}}
+# Compile and run the test application.
+run_test: _extract_vendor
+    cargo run {{cargo_args}}
 
-# Pop standard build routines
+# Compiles the C library.
+compile_clib: _extract_vendor
+    cargo build {{cargo_args}} --manifest-path ffi/Cargo.toml
+
+# Compiles the C library's pkgconfig file.
+compile_pkgconfig:
+    cargo run -p tools --bin pkgconfig -- {{package}} {{libdir}} {{includedir}}
 
 clean:
     cargo clean
@@ -43,9 +39,23 @@ clean:
 distclean:
     rm -rf .cargo vendor vendor.tar target
 
-extract-vendor:
-    test {{VENDOR}} -eq '1' && (rm -rf vendor; tar pxf vendor.tar) || true
+install:
+    install -Dm0644 target/{{target}}/lib{{package}}.so {{path_clib}}
+    install -Dm0644 data/{{package}}.h {{path_header}}
+    install -Dm0644 target/{{package}}.pc {{path_pkgconfig}}
 
+uninstall:
+    rm {{path_clib}} {{path_header}} {{path_pkgconfig}}
+
+# Extracts vendored dependencies if vendor=1.
+_extract_vendor:
+    #!/usr/bin/env sh
+    if test {{vendor}} = 1; then
+        rm -rf vendor
+        tar pxf vendor.tar
+    fi
+
+# Vendor Cargo dependencies locally.
 vendor:
     mkdir -p .cargo
     cargo vendor --sync ffi/Cargo.toml \
