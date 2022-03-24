@@ -4,7 +4,6 @@
 #![allow(clippy::not_unsafe_ptr_arg_deref)]
 
 use glib::translate::FromGlibPtrNone;
-use gtk::prelude::{ContainerExt, WidgetExt};
 use gtk_sys::{GtkContainer, GtkWindow};
 use i18n_embed::DesktopLanguageRequester;
 use pop_analytics_panel::*;

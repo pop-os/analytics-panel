@@ -8,17 +8,17 @@ members = [ "ffi", "tools" ]
 
 [dependencies]
 cascade = "1.0.0"
-anyhow = "1.0.53"
-gtk = "0.15.3"
+anyhow = "1.0.56"
+gtk = "0.15.4"
 relm = "0.23.0"
-i18n-embed = { version = "0.13.3", features = ["fluent-system", "desktop-requester"] }
+i18n-embed = { version = "0.13.4", features = ["fluent-system", "desktop-requester"] }
 i18n-embed-fl = "0.6.4"
 rust-embed = "6.3.0"
 relm-derive = "0.23.0"
-once_cell = "1.9.0"
-glib = "0.15.5"
-gio = "0.15.5"
-async-std = "1.10.0"
+once_cell = "1.10.0"
+glib = "0.15.10"
+gio = "0.15.10"
+async-std = "1.11.0"
 dirs = "4.0.0"
 concat-in-place = "1.1.0"
 
