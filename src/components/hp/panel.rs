@@ -37,7 +37,9 @@ pub enum Message {
 impl Widget {
     fn delete_data(&self) {
         let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(super::delete(tx));
+        glib::MainContext::default().spawn_local(async move {
+            super::delete(tx);
+        });
     }
 
     fn delete_data_request(&self) {
@@ -47,11 +49,15 @@ impl Widget {
 
     fn download_data(&self) {
         let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(super::download(tx));
+        glib::MainContext::default().spawn_local(async {
+            super::download(tx).await;
+        });
     }
 
     fn toggle_analytics(&mut self, enable: bool) {
-        glib::MainContext::default().spawn_local(super::toggle(enable));
+        glib::MainContext::default().spawn_local(async move {
+            super::toggle(enable).await;
+        });
     }
 }
 

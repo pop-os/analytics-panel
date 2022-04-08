@@ -13,8 +13,10 @@ use relm::StreamHandle;
 
 use panel::Message as PanelMessage;
 use relm::Sender;
+use std::collections::HashMap;
 use std::fs;
-use std::time::Duration;
+use std::io::{Read, Write};
+use std::str::FromStr;
 
 pub enum Status {
     Success,
@@ -35,12 +37,15 @@ async fn check(sender: Sender<PanelMessage>) -> Status {
 }
 
 /// Delete analytics data currently held remotely.
-async fn delete(sender: Sender<PanelMessage>) {
+async fn delete(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::Error> {
     if let Status::Failed = check(sender.clone()).await {
-        return;
+        return Ok(());
     }
 
-    println!("TODO: deleting analytics data");
+    let pool = glib::ThreadPool::shared(None).unwrap();
+    pool.push_future(move || hp_vendor_client::delete_and_disable())
+        .unwrap()
+        .await
 }
 
 /// Check if analytics data exists that can be deleted.
@@ -53,31 +58,88 @@ async fn delete_requested(sender: Sender<PanelMessage>) {
 }
 
 /// Download analytics data currently held remotely.
-async fn download(sender: Sender<PanelMessage>) {
+async fn download(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::Error> {
     if let Status::Failed = check(sender.clone()).await {
-        return;
+        return Ok(());
     }
 
-    println!("TODO: downloading analytics data");
+    let pool = glib::ThreadPool::shared(None).unwrap();
+    pool.push_future(move || {
+        let _ = sender.send(PanelMessage::DownloadProgress(0.));
 
-    if let Some(analytics_dir) = analytics_dir() {
-        let _ = fs::create_dir_all(&analytics_dir);
+        if let Some(analytics_dir) = analytics_dir() {
+            let _ = fs::create_dir_all(&analytics_dir);
 
-        let mut p = 0.0;
+            let mut file = fs::File::create(analytics_dir.join("data.json"))?;
 
-        for _ in 0..10 {
-            p += 0.1;
-            async_std::task::sleep(Duration::from_millis(500)).await;
-            let _ = sender.send(PanelMessage::DownloadProgress(p));
+            let mut download = hp_vendor_client::download(hp_vendor_client::DownloadFormat::Json)?;
+            let length = download.length();
+
+            let mut buf = [0; 1024];
+            let mut bytes = 0;
+            loop {
+                let count = download.read(&mut buf)?;
+                if count == 0 {
+                    break;
+                }
+
+                file.write_all(&buf)?;
+
+                bytes += count;
+                let _ = sender.send(PanelMessage::DownloadProgress(bytes as f32 / length as f32));
+            }
+
+            download.wait()?
+        }
+
+        let _ = sender.send(PanelMessage::DownloadComplete);
+
+        Ok(())
+    })
+    .unwrap()
+    .await
+}
+
+fn purpose_for_locale(
+    purposes: &HashMap<String, hp_vendor_client::DataCollectionPurpose>,
+) -> (String, String, &hp_vendor_client::DataCollectionPurpose) {
+    let locale = locale_config::Locale::current();
+    let mut region = None;
+    for i in locale.tags_for("messages") {
+        if let Ok(identifier) = unic_langid::LanguageIdentifier::from_str(&i.to_string()) {
+            let language = identifier.language.as_str();
+            if region.is_none() {
+                if let Some(new_region) = identifier.region {
+                    region = Some(new_region.as_str().to_owned());
+                }
+            }
+            if let Some(purpose) = purposes.get(language) {
+                // Is this a reasonable default?
+                let region = region.unwrap_or_else(String::new);
+                return (language.to_string(), region, purpose);
+            }
         }
     }
-
-    let _ = sender.send(PanelMessage::DownloadComplete);
+    // Assume `en` is always a valid locale, and use as fallback
+    let region = region.unwrap_or_else(String::new);
+    ("en".to_string(), region, &purposes["en"])
 }
 
 /// Toggle collection of analytics data.
-async fn toggle(enable: bool) {
-    println!("TODO: analytics toggled");
+async fn toggle(enable: bool) -> Result<(), hp_vendor_client::Error> {
+    let pool = glib::ThreadPool::shared(None).unwrap();
+    pool.push_future(move || {
+        if enable {
+            let purposes = hp_vendor_client::purposes()?.purposes;
+            let (language, region, purpose) = purpose_for_locale(&purposes);
+            println!("{}, {}, {:?}", language, region, purpose);
+            hp_vendor_client::consent(&language, &region, &purpose.purpose_id, &purpose.version)
+        } else {
+            hp_vendor_client::disable()
+        }
+    })
+    .unwrap()
+    .await
 }
 
 pub fn message_dialog(
