@@ -3,7 +3,7 @@
 
 #![allow(clippy::not_unsafe_ptr_arg_deref)]
 
-use glib::translate::FromGlibPtrNone;
+use glib::translate::{FromGlibPtrNone, IntoGlib};
 use gtk_sys::{GtkContainer, GtkWindow};
 use i18n_embed::DesktopLanguageRequester;
 use pop_analytics_panel::*;
@@ -48,4 +48,9 @@ pub extern "C" fn pop_analytics_panel_summary_attach(c_container: *mut GtkContai
     }
 
     attach_summary(&container);
+}
+
+#[no_mangle]
+pub extern "C" fn pop_analytics_panel_should_show() -> glib::ffi::gboolean {
+    should_show().into_glib()
 }

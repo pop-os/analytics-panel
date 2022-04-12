@@ -31,3 +31,7 @@ pub fn attach_summary(container: &gtk::Container) {
         let _relm_handle = &component;
     });
 }
+
+pub fn should_show() -> bool {
+    hp_vendor_client::has_hp_vendor() && hp_vendor_client::supported_hardware().is_ok()
+}
