@@ -13,6 +13,8 @@ pub struct Model {
     summary: relm::Component<super::summary::Widget>,
     operation: Option<Operation>,
     background: relm::Sender<Message>,
+    purpose: Option<(String, String, String, String)>,
+    relm: relm::Relm<Widget>,
 }
 
 #[derive(Debug)]
@@ -30,6 +32,7 @@ pub enum Message {
     DownloadComplete,
     DownloadProgress(f32),
     OpenDataDir,
+    PurposeAndOpt(super::PurposeAndOpt),
     Toggle,
     TryAgain,
 }
@@ -54,9 +57,9 @@ impl Widget {
         });
     }
 
-    fn toggle_analytics(&mut self, enable: bool) {
+    fn toggle_analytics(&mut self, purpose: (String, String, String, String), enable: bool) {
         glib::MainContext::default().spawn_local(async move {
-            super::toggle(enable).await;
+            super::toggle(purpose, enable).await;
         });
     }
 }
@@ -72,14 +75,28 @@ impl relm::Widget for Widget {
 
         use crate::clamp::BinClamp;
         self.widgets.root.bin_clamp(300, 600, 80);
-        self.widgets.content.remove(&self.widgets.options);
         self.widgets.content.add(self.model.summary.widget());
-        self.widgets.content.add(&self.widgets.options);
+        self.widgets
+            .content
+            .reorder_child(self.model.summary.widget(), 0);
+
+        let tx = self.model.background.clone();
+        glib::MainContext::default().spawn_local(async move {
+            if let Ok(purpose_and_opt) = super::purpose_and_opted(true).await {
+                tx.send(Message::PurposeAndOpt(purpose_and_opt));
+            } else {
+                // TODO? Shouldn't happen if hp-vendor installed correctly
+            }
+        });
     }
 
     fn update(&mut self, message: Message) {
         match message {
-            Message::Toggle => self.toggle_analytics(self.widgets.toggle.is_active()),
+            Message::Toggle => {
+                if let Some(purpose) = self.model.purpose.clone() {
+                    self.toggle_analytics(purpose, self.widgets.toggle.is_active())
+                }
+            }
 
             Message::Delete => {
                 self.delete_data();
@@ -129,6 +146,23 @@ impl relm::Widget for Widget {
                 }
             }
 
+            Message::PurposeAndOpt(super::PurposeAndOpt {
+                language,
+                region,
+                purpose,
+                opted,
+            }) => {
+                {
+                    let _lock = self.model.relm.stream().lock();
+                    self.widgets.toggle.set_active(opted);
+                }
+                self.widgets.toggle.set_sensitive(true);
+                self.model.purpose = Some((language, region, purpose.purpose_id, purpose.version));
+                self.model
+                    .summary
+                    .emit(super::summary::Message::PurposeStatement(purpose.statement));
+            }
+
             Message::TryAgain => match self.model.operation {
                 Some(Operation::DeleteData) => self.delete_data(),
                 Some(Operation::DownloadData) => self.download_data(),
@@ -150,6 +184,8 @@ impl relm::Widget for Widget {
             summary: relm::create_component::<super::summary::Widget>(false),
             operation: None,
             background: sender,
+            purpose: None,
+            relm: relm.clone(),
         }
     }
 
@@ -165,7 +201,6 @@ impl relm::Widget for Widget {
                 halign: gtk::Align::Center,
                 orientation: gtk::Orientation::Vertical,
 
-                #[name="options"]
                 gtk::ListBox {
                     selection_mode: gtk::SelectionMode::None,
 
@@ -192,6 +227,7 @@ impl relm::Widget for Widget {
                         #[name="toggle"]
                         gtk::Switch {
                             valign: gtk::Align::Center,
+                            sensitive: false,
                             changed_active => Message::Toggle
                         }
                     },

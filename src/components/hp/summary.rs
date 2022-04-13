@@ -4,13 +4,18 @@ use concat_in_place::strcat;
 use gtk::prelude::*;
 
 pub struct Model {
+    background: relm::Sender<Message>,
     show_toggle: bool,
+    purpose: Option<(String, String, String, String)>,
+    relm: relm::Relm<Widget>,
 }
 
 #[derive(relm_derive::Msg)]
 pub enum Message {
     DisplaySample,
     OpenWebpage(&'static str),
+    PurposeAndOpt(super::PurposeAndOpt),
+    PurposeStatement(String),
     Toggle,
 }
 
@@ -46,10 +51,32 @@ impl relm::Widget for Widget {
             .link3
             .style_context()
             .add_class("analytics-link");
+
+        if self.model.show_toggle {
+            let tx = self.model.background.clone();
+            glib::MainContext::default().spawn_local(async move {
+                if let Ok(purpose_and_opt) = super::purpose_and_opted(false).await {
+                    tx.send(Message::PurposeAndOpt(purpose_and_opt));
+                } else {
+                    // TODO? Shouldn't happen if hp-vendor installed correctly
+                }
+            });
+        }
     }
 
-    fn model(_: &relm::Relm<Self>, show_toggle: bool) -> Model {
-        Model { show_toggle }
+    fn model(relm: &relm::Relm<Self>, show_toggle: bool) -> Model {
+        let stream = relm.stream().clone();
+
+        let (_channel, sender) = relm::Channel::new(move |message| {
+            stream.emit(message);
+        });
+
+        Model {
+            background: sender,
+            show_toggle,
+            purpose: None,
+            relm: relm.clone(),
+        }
     }
 
     fn update(&mut self, message: Message) {
@@ -60,11 +87,33 @@ impl relm::Widget for Widget {
                 crate::misc::xdg_open(url);
             }
 
+            Message::PurposeAndOpt(super::PurposeAndOpt {
+                language,
+                region,
+                purpose,
+                opted,
+            }) => {
+                {
+                    let _lock = self.model.relm.stream().lock();
+                    self.widgets.toggle.set_active(opted);
+                }
+                self.widgets.toggle.set_active(opted);
+                self.widgets.toggle.set_sensitive(true);
+                self.widgets.purpose_statement.set_text(&purpose.statement);
+                self.model.purpose = Some((language, region, purpose.purpose_id, purpose.version));
+            }
+
+            Message::PurposeStatement(statement) => {
+                self.widgets.purpose_statement.set_text(&statement);
+            }
+
             Message::Toggle => {
                 let enable = self.widgets.toggle.is_active();
-                glib::MainContext::default().spawn_local(async move {
-                    super::toggle(enable).await;
-                });
+                if let Some(purpose) = self.model.purpose.clone() {
+                    glib::MainContext::default().spawn_local(async move {
+                        super::toggle(purpose, enable).await;
+                    });
+                }
             }
         }
     }
@@ -122,6 +171,10 @@ impl relm::Widget for Widget {
                 label: &fl!("pop-privacy-policy"),
                 activate_link => (Message::OpenWebpage(""), gtk::Inhibit(false)),
                 margin_bottom: 24,
+            },
+
+            #[name="purpose_statement"]
+            gtk::Label {
             },
         }
     }
