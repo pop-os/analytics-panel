@@ -11,6 +11,7 @@ data-deleted-header = Data Has Been Deleted
 delete = Delete
 delete-data-description = Data will be permanently erased from HP and can't be downloaded after deletion.
 delete-data-header = Delete Data?
+error-header = Error
 no-data-description = There is no data for this device in HP
 no-data-header = No Data Retained
 no-internet-description = Please check the internet connection and try again.
