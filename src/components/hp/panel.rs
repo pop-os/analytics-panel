@@ -4,6 +4,7 @@
 use crate::fl;
 use gtk::prelude::*;
 use relm::Channel;
+use std::future::Future;
 
 use super::dialog::{self, Variant};
 
@@ -38,11 +39,21 @@ pub enum Message {
 }
 
 impl Widget {
+    fn spawn_and_handle_err<F: Future<Output = Result<(), hp_vendor_client::Error>> + 'static>(
+        &self,
+        fut: F,
+    ) {
+        let stream = self.model.dialog.stream();
+        glib::MainContext::default().spawn_local(async move {
+            if let Err(err) = fut.await {
+                stream.emit(dialog::Message::Update(dialog::Variant::Error(err)));
+            }
+        });
+    }
+
     fn delete_data(&self) {
         let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(async move {
-            super::delete(tx);
-        });
+        self.spawn_and_handle_err(super::delete(tx));
     }
 
     fn delete_data_request(&self) {
@@ -52,15 +63,11 @@ impl Widget {
 
     fn download_data(&self) {
         let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(async {
-            super::download(tx).await;
-        });
+        self.spawn_and_handle_err(super::download(tx));
     }
 
     fn toggle_analytics(&mut self, purpose: (String, String, String, String), enable: bool) {
-        glib::MainContext::default().spawn_local(async move {
-            super::toggle(purpose, enable).await;
-        });
+        self.spawn_and_handle_err(super::toggle(purpose, enable));
     }
 }
 

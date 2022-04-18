@@ -29,6 +29,7 @@ pub enum Variant {
     DataDownloaded,
     Deleted,
     DeleteData,
+    Error(hp_vendor_client::Error),
     NoDataFound,
     NoInternet,
 }
@@ -87,6 +88,15 @@ impl Widget {
         );
     }
 
+    fn error_view(&self, error: &hp_vendor_client::Error) {
+        self.configure_view(
+            &fl!("error-header"),
+            &error.to_string(),
+            &fl!("close"),
+            None,
+        );
+    }
+
     fn no_data_found_view(&self) {
         self.configure_view(
             &fl!("no-data-header"),
@@ -114,6 +124,7 @@ impl Widget {
             match variant {
                 Variant::Deleted => self.data_deleted_view(),
                 Variant::DeleteData => self.delete_data_confirmation_view(),
+                Variant::Error(ref error) => self.error_view(error),
                 Variant::NoDataFound => self.no_data_found_view(),
                 Variant::NoInternet => self.no_internet_view(),
                 Variant::DataDownloaded => self.data_downloaded_view(),
