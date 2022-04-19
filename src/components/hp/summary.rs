@@ -153,7 +153,7 @@ impl relm::Widget for Widget {
             #[name="link1"]
             gtk::LinkButton {
                 halign: gtk::Align::Start,
-                label: &fl!("data-sample"),
+                label: &fl!("see-data-sample"),
                 margin_bottom: 24,
                 activate_link => (Message::DisplaySample, gtk::Inhibit(false)),
             },

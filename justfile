@@ -12,11 +12,13 @@ sysconfdir := '/etc'
 bindir := prefix + '/bin'
 includedir := prefix + '/include'
 libdir := prefix + '/lib'
+sharedir := prefix + '/share'
 
 package := 'pop_analytics_panel'
 path_clib := rootdir + libdir + '/lib' + package + '.so'
 path_header := rootdir + includedir + '/' + package + '.h'
 path_pkgconfig := rootdir + libdir + '/pkgconfig/' + package + '.pc'
+path_share := rootdir + sharedir + '/' + package
 
 # Compiles all components of the library.
 all: compile_clib compile_pkgconfig
@@ -43,6 +45,7 @@ install:
     install -Dm0644 target/{{target}}/lib{{package}}.so {{path_clib}}
     install -Dm0644 data/{{package}}.h {{path_header}}
     install -Dm0644 target/{{package}}.pc {{path_pkgconfig}}
+    install -Dm0644 data/hp-privacy-statement-2021.pdf {{path_share}}/hp-privacy-statement-2021.pdf
 
 uninstall:
     rm {{path_clib}} {{path_header}} {{path_pkgconfig}}

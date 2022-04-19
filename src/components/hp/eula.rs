@@ -19,7 +19,7 @@ impl relm::Widget for Widget {
         self.widgets.title.set_markup(&format!("<b>{}</b>", fl!("eula")));
 
         self.widgets.text.buffer().map(|buffer| {
-            let eula_markup = include_str!("eula.md");
+            let eula_markup = include_str!("../../../data/hp-eula.md");
             buffer.insert_markup(&mut buffer.start_iter(), eula_markup);
         });
     }
