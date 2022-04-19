@@ -39,6 +39,18 @@ pub extern "C" fn pop_analytics_panel_attach(
 }
 
 #[no_mangle]
+pub extern "C" fn pop_analytics_panel_eula_attach(c_container: *mut GtkContainer) {
+    let container;
+
+    unsafe {
+        gtk::set_initialized();
+        container = gtk::Container::from_glib_none(c_container);
+    }
+
+    attach_eula(&container);
+}
+
+#[no_mangle]
 pub extern "C" fn pop_analytics_panel_summary_attach(c_container: *mut GtkContainer) {
     let container;
 

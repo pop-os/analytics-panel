@@ -14,6 +14,15 @@ pub use self::localize::localizer;
 
 use gtk::prelude::*;
 
+pub fn attach_eula(container: &gtk::Container) {
+    let component = relm::create_component::<components::hp::Eula>(());
+
+    container.add(component.widget());
+    container.connect_destroy(move |_| {
+        let _relm_handle = &component;
+    });
+}
+
 pub fn attach_panel(container: &gtk::Container, window: gtk::Window) {
     let panel = relm::create_component::<components::hp::Panel>(window);
 

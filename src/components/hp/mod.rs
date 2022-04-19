@@ -2,9 +2,11 @@
 // SPDX-License-Identifier: MPL-2.0
 
 pub mod dialog;
+pub mod eula;
 pub mod panel;
 pub mod summary;
 
+pub use self::eula::Widget as Eula;
 pub use self::panel::Widget as Panel;
 pub use self::summary::Widget as Summary;
 
