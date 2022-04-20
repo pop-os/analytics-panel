@@ -36,30 +36,12 @@ fn analytics_dir() -> Option<std::path::PathBuf> {
     None
 }
 
-/// Check if analytics data is held remotely.
-async fn check(sender: Sender<PanelMessage>) -> Status {
-    Status::Success
-}
-
 /// Delete analytics data currently held remotely.
-async fn delete(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::Error> {
-    if let Status::Failed = check(sender.clone()).await {
-        return Ok(());
-    }
-
+async fn delete() -> Result<(), hp_vendor_client::Error> {
     let pool = glib::ThreadPool::shared(None).unwrap();
     pool.push_future(move || hp_vendor_client::delete_and_disable())
         .unwrap()
         .await
-}
-
-/// Check if analytics data exists that can be deleted.
-async fn delete_requested(sender: Sender<PanelMessage>) {
-    if let Status::Failed = check(sender.clone()).await {
-        return;
-    }
-
-    let _ = sender.send(PanelMessage::DeleteDialog);
 }
 
 struct ReadCounter<T: Read, F: FnMut(usize)>(T, F);
@@ -74,10 +56,6 @@ impl<T: Read, F: FnMut(usize)> Read for ReadCounter<T, F> {
 
 /// Download analytics data currently held remotely.
 async fn download(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::Error> {
-    if let Status::Failed = check(sender.clone()).await {
-        return Ok(());
-    }
-
     let pool = glib::ThreadPool::shared(None).unwrap();
     pool.push_future(move || {
         let _ = sender.send(PanelMessage::DownloadProgress(0.));
@@ -104,8 +82,6 @@ async fn download(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::
 
             download.wait()?
         }
-
-        let _ = sender.send(PanelMessage::DownloadComplete);
 
         Ok(())
     })

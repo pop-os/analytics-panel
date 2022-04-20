@@ -42,13 +42,14 @@ pub enum Operation {
 pub enum Message {
     Delete,
     DeleteDialog,
-    DeleteRequest,
+    DeleteComplete(bool),
     Download,
-    DownloadComplete,
+    DownloadComplete(bool),
     DownloadProgress(f32),
     OpenDataDir,
     PurposeAndOpt(super::PurposeAndOpt),
     Toggle,
+    ToggleSensitive,
     TryAgain,
 }
 
@@ -67,21 +68,30 @@ impl Widget {
 
     fn delete_data(&self) {
         let tx = self.model.background.clone();
-        self.spawn_and_handle_err(super::delete(tx));
-    }
-
-    fn delete_data_request(&self) {
-        let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(super::delete_requested(tx));
+        self.spawn_and_handle_err(async move {
+            let res = super::delete().await;
+            tx.send(Message::DeleteComplete(res.is_ok()));
+            res
+        });
     }
 
     fn download_data(&self) {
         let tx = self.model.background.clone();
-        self.spawn_and_handle_err(super::download(tx));
+        self.spawn_and_handle_err(async move {
+            let res = super::download(tx.clone()).await;
+            let _ = tx.send(Message::DownloadComplete(res.is_ok()));
+            res
+        });
     }
 
     fn toggle_analytics(&mut self, purpose: (String, String, String, String), enable: bool) {
-        self.spawn_and_handle_err(super::toggle(purpose, enable));
+        self.widgets.toggle.set_sensitive(false);
+        let tx = self.model.background.clone();
+        self.spawn_and_handle_err(async move {
+            let res = super::toggle(purpose, enable).await;
+            tx.send(Message::ToggleSensitive);
+            res
+        });
     }
 }
 
@@ -101,10 +111,7 @@ impl relm::Widget for Widget {
             .content
             .reorder_child(self.model.summary.widget(), 0);
 
-        self.widgets
-            .list_box
-            .style_context()
-            .add_class("frame");
+        self.widgets.list_box.style_context().add_class("frame");
 
         let tx = self.model.background.clone();
         glib::MainContext::default().spawn_local(async move {
@@ -122,16 +129,26 @@ impl relm::Widget for Widget {
                 self.toggle_analytics(self.model.purpose.clone(), self.widgets.toggle.is_active())
             }
 
+            Message::ToggleSensitive => {
+                self.widgets.toggle.set_sensitive(true);
+            }
+
             Message::Delete => {
+                self.widgets.delete_button.set_sensitive(false);
                 self.delete_data();
             }
 
-            Message::DeleteRequest => {
-                self.model.operation = Some(Operation::DeleteData);
-                self.delete_data_request();
+            Message::DeleteComplete(success) => {
+                self.model.operation = None;
+                self.widgets.delete_button.set_sensitive(true);
+                if success {
+                    let _lock = self.model.relm.stream().lock();
+                    self.widgets.toggle.set_active(false);
+                }
             }
 
             Message::DeleteDialog => {
+                self.model.operation = Some(Operation::DeleteData);
                 self.model
                     .dialog
                     .stream()
@@ -154,11 +171,14 @@ impl relm::Widget for Widget {
                     .set_visible_child(&self.widgets.download_progress);
             }
 
-            Message::DownloadComplete => {
+            Message::DownloadComplete(success) => {
                 self.model.operation = None;
-                self.model
-                    .dialog
-                    .emit(dialog::Message::Update(dialog::Variant::DataDownloaded));
+                self.widgets.download_button.set_sensitive(true);
+                if success {
+                    self.model
+                        .dialog
+                        .emit(dialog::Message::Update(dialog::Variant::DataDownloaded));
+                }
                 self.widgets
                     .download_stack
                     .set_visible_child(&self.widgets.download_label);
@@ -270,7 +290,7 @@ impl relm::Widget for Widget {
                         #[name="delete_button"]
                         gtk::Button {
                             label: &fl!("delete"),
-                            clicked => Message::DeleteRequest,
+                            clicked => Message::DeleteDialog,
                         }
                     },
 
