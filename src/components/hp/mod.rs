@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MPL-2.0
 
 pub mod dialog;
-pub mod initial_setup;
 pub mod eula;
+pub mod initial_setup;
 pub mod panel;
 pub mod summary;
 
@@ -12,6 +12,7 @@ pub use self::initial_setup::Widget as InitialSetup;
 pub use self::panel::Widget as Panel;
 pub use self::summary::Widget as Summary;
 
+use flate2::read::GzDecoder;
 use gtk::prelude::*;
 use relm::StreamHandle;
 
@@ -19,7 +20,7 @@ use panel::Message as PanelMessage;
 use relm::Sender;
 use std::collections::HashMap;
 use std::fs;
-use std::io::{Read, Write};
+use std::io::{self, Read};
 use std::str::FromStr;
 
 pub enum Status {
@@ -61,6 +62,16 @@ async fn delete_requested(sender: Sender<PanelMessage>) {
     let _ = sender.send(PanelMessage::DeleteDialog);
 }
 
+struct ReadCounter<T: Read, F: FnMut(usize)>(T, F);
+
+impl<T: Read, F: FnMut(usize)> Read for ReadCounter<T, F> {
+    fn read(&mut self, buf: &mut [u8]) -> io::Result<usize> {
+        let count = self.0.read(buf)?;
+        (self.1)(count);
+        Ok(count)
+    }
+}
+
 /// Download analytics data currently held remotely.
 async fn download(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::Error> {
     if let Status::Failed = check(sender.clone()).await {
@@ -74,24 +85,22 @@ async fn download(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::
         if let Some(analytics_dir) = analytics_dir() {
             let _ = fs::create_dir_all(&analytics_dir);
 
-            let mut file = fs::File::create(analytics_dir.join("data.json"))?;
+            let file = fs::File::create(analytics_dir.join("data.json"))?;
 
-            let mut download = hp_vendor_client::download(hp_vendor_client::DownloadFormat::Json)?;
+            let mut download = hp_vendor_client::download(hp_vendor_client::DownloadFormat::GZip)?;
             let length = download.length();
 
-            let mut buf = [0; 1024];
+            // Keep track of how many bytes have been read
             let mut bytes = 0;
-            loop {
-                let count = download.read(&mut buf)?;
-                if count == 0 {
-                    break;
-                }
-
-                file.write_all(&buf)?;
-
+            let sender = &sender;
+            let read_counter = ReadCounter(&mut download, move |count| {
                 bytes += count;
                 let _ = sender.send(PanelMessage::DownloadProgress(bytes as f32 / length as f32));
-            }
+            });
+
+            // Decompress and pretty print
+            let json: serde_json::Value = serde_json::from_reader(GzDecoder::new(read_counter))?;
+            serde_json::to_writer_pretty(file, &json)?;
 
             download.wait()?
         }
