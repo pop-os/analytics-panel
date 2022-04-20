@@ -10,7 +10,7 @@ members = [ "ffi", "tools" ]
 cascade = "1.0.0"
 anyhow = "1.0.56"
 gtk = "0.15.4"
-hp-vendor-client = { git = "https://github.com/pop-os/hp-vendor", branch = "analytics-panel_nobuild" }
+hp-vendor-client = { git = "https://github.com/pop-os/hp-vendor" }
 relm = "0.23.0"
 i18n-embed = { version = "0.13.4", features = ["fluent-system", "desktop-requester"] }
 i18n-embed-fl = "0.6.4"
