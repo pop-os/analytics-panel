@@ -124,7 +124,7 @@ impl relm::Widget for Widget {
             gtk::LinkButton {
                 halign: gtk::Align::Start,
                 label: &fl!("hp-privacy-statement"),
-                activate_link => (Message::OpenWebpage("https://www.hp.com/us-en/privacy/privacy.html"), gtk::Inhibit(false)),
+                activate_link => (Message::OpenWebpage("https://www.hp.com/us-en/privacy/privacy-central.html"), gtk::Inhibit(false)),
             },
 
             #[name="sample_title"]
