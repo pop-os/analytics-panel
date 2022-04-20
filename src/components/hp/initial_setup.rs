@@ -124,8 +124,7 @@ impl relm::Widget for Widget {
             gtk::LinkButton {
                 halign: gtk::Align::Start,
                 label: &fl!("hp-privacy-statement"),
-                //TODO: ensure path to PDF is correct when prefix is changed
-                activate_link => (Message::OpenWebpage("file:///usr/share/pop_analytics_panel/hp-privacy-statement-2021.pdf"), gtk::Inhibit(false)),
+                activate_link => (Message::OpenWebpage("https://www.hp.com/us-en/privacy/privacy.html"), gtk::Inhibit(false)),
             },
 
             #[name="sample_title"]

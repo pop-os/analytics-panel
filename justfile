@@ -45,7 +45,6 @@ install:
     install -Dm0644 target/{{target}}/lib{{package}}.so {{path_clib}}
     install -Dm0644 data/{{package}}.h {{path_header}}
     install -Dm0644 target/{{package}}.pc {{path_pkgconfig}}
-    install -Dm0644 data/hp-privacy-statement-2021.pdf {{path_share}}/hp-privacy-statement-2021.pdf
 
 uninstall:
     rm {{path_clib}} {{path_header}} {{path_pkgconfig}}
