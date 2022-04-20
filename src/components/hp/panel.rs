@@ -61,6 +61,15 @@ impl Widget {
         let stream = self.model.dialog.stream();
         glib::MainContext::default().spawn_local(async move {
             if let Err(err) = fut.await {
+                if let hp_vendor_client::Error::Api(err) = &err {
+                    if err.code == 404 && &err.endpoint == "DataDownload"
+                        || &err.endpoint == "DataDelete"
+                    {
+                        stream.emit(dialog::Message::Update(dialog::Variant::NoDataFound));
+                        return;
+                    }
+                }
+
                 stream.emit(dialog::Message::Update(dialog::Variant::Error(err)));
             }
         });
