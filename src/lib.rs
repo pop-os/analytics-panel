@@ -42,7 +42,7 @@ pub fn attach_panel(container: &gtk::Container, window: gtk::Window) {
 }
 
 pub fn attach_summary(container: &gtk::Container) {
-    let component = relm::create_component::<components::hp::Summary>(true);
+    let component = relm::create_component::<components::hp::Summary>(());
 
     container.add(component.widget());
     container.connect_destroy(move |_| {

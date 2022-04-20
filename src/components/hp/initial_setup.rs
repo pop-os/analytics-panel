@@ -117,6 +117,7 @@ impl relm::Widget for Widget {
 
             gtk::Label {
                 xalign: 0.0,
+                line_wrap: true,
                 label: &fl!("hp-analytics-description"),
             },
 

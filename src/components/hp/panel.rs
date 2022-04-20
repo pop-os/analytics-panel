@@ -8,13 +8,27 @@ use std::future::Future;
 
 use super::dialog::{self, Variant};
 
+const MODEL: &str = "HP Dev One";
+
+fn header_func(row: &gtk::ListBoxRow, before: Option<&gtk::ListBoxRow>) {
+    if before.is_none() {
+        row.set_header(None::<&gtk::Widget>)
+    } else if row.header().is_none() {
+        row.set_header(Some(&cascade! {
+            gtk::Separator::new(gtk::Orientation::Horizontal);
+            ..show();
+        }));
+    }
+}
+
 pub struct Model {
     _channel: Channel<Message>,
     dialog: relm::Component<super::dialog::Widget>,
     summary: relm::Component<super::summary::Widget>,
     operation: Option<Operation>,
     background: relm::Sender<Message>,
-    purpose: Option<(String, String, String, String)>,
+    purpose: (String, String, String, String),
+    purpose_statement: String,
     relm: relm::Relm<Widget>,
 }
 
@@ -87,9 +101,14 @@ impl relm::Widget for Widget {
             .content
             .reorder_child(self.model.summary.widget(), 0);
 
+        self.widgets
+            .list_box
+            .style_context()
+            .add_class("frame");
+
         let tx = self.model.background.clone();
         glib::MainContext::default().spawn_local(async move {
-            if let Ok(purpose_and_opt) = super::purpose_and_opted(true).await {
+            if let Ok(purpose_and_opt) = super::purpose_and_opted(false).await {
                 tx.send(Message::PurposeAndOpt(purpose_and_opt));
             } else {
                 // TODO? Shouldn't happen if hp-vendor installed correctly
@@ -100,9 +119,7 @@ impl relm::Widget for Widget {
     fn update(&mut self, message: Message) {
         match message {
             Message::Toggle => {
-                if let Some(purpose) = self.model.purpose.clone() {
-                    self.toggle_analytics(purpose, self.widgets.toggle.is_active())
-                }
+                self.toggle_analytics(self.model.purpose.clone(), self.widgets.toggle.is_active())
             }
 
             Message::Delete => {
@@ -164,10 +181,9 @@ impl relm::Widget for Widget {
                     self.widgets.toggle.set_active(opted);
                 }
                 self.widgets.toggle.set_sensitive(true);
-                self.model.purpose = Some((language, region, purpose.purpose_id, purpose.version));
-                self.model
-                    .summary
-                    .emit(super::summary::Message::PurposeStatement(purpose.statement));
+                self.model.purpose = (language, region, purpose.purpose_id, purpose.version);
+                self.widgets.purpose_statement.set_text(&purpose.statement);
+                self.model.purpose_statement = purpose.statement;
             }
 
             Message::TryAgain => match self.model.operation {
@@ -185,13 +201,17 @@ impl relm::Widget for Widget {
             stream.emit(message);
         });
 
+        let (language, region, purpose) =
+            super::purpose_for_locale(hp_vendor_client::static_purposes());
+
         Model {
             _channel,
             dialog: super::message_dialog(&window, relm.stream().clone(), 480),
-            summary: relm::create_component::<super::summary::Widget>(false),
+            summary: relm::create_component::<super::summary::Widget>(()),
             operation: None,
             background: sender,
-            purpose: None,
+            purpose: (language, region, purpose.purpose_id, purpose.version),
+            purpose_statement: purpose.statement,
             relm: relm.clone(),
         }
     }
@@ -205,11 +225,14 @@ impl relm::Widget for Widget {
             gtk::Box {
                 margin_bottom: 48,
                 margin_top: 48,
+                spacing: 6,
                 halign: gtk::Align::Center,
                 orientation: gtk::Orientation::Vertical,
 
+                #[name="list_box"]
                 gtk::ListBox {
                     selection_mode: gtk::SelectionMode::None,
+                    header_func: Some(Box::new(header_func)),
 
                     InfoBox {
                         gtk::Box {
@@ -218,17 +241,12 @@ impl relm::Widget for Widget {
                             hexpand: true,
                             valign: gtk::Align::Center,
 
+                            #[name="purpose_statement"]
                             gtk::Label {
                                 ellipsize: gtk::pango::EllipsizeMode::End,
-                                label: &fl!("hp-analytics-toggle-header"),
+                                label: &self.model.purpose_statement,
                                 xalign: 0.0,
                             },
-
-                            gtk::Label {
-                                ellipsize: gtk::pango::EllipsizeMode::End,
-                                label: &fl!("hp-analytics-toggle-description"),
-                                xalign: 0.0,
-                            }
                         },
 
                         #[name="toggle"]
@@ -245,7 +263,7 @@ impl relm::Widget for Widget {
                             hexpand: true,
                             valign: gtk::Align::Center,
                             ellipsize: gtk::pango::EllipsizeMode::End,
-                            label: &fl!("delete-data-option"),
+                            label: &fl!("delete-data-option", model=MODEL),
                             xalign: 0.0,
                         },
 
@@ -266,7 +284,7 @@ impl relm::Widget for Widget {
                             #[name="download_label"]
                             gtk::Label {
                                 ellipsize: gtk::pango::EllipsizeMode::End,
-                                label: &fl!("download-option"),
+                                label: &fl!("download-option", model=MODEL),
                                 xalign: 0.0,
                             },
 
@@ -304,14 +322,17 @@ impl relm::Widget for InfoBox {
     fn update(&mut self, _: ()) {}
 
     relm::view! {
-        #[container]
-        gtk::Box {
-            orientation: gtk::Orientation::Horizontal,
-            margin_start: 20,
-            margin_end: 20,
-            margin_top: 8,
-            margin_bottom: 8,
-            spacing: 24
+        gtk::ListBoxRow {
+            activatable: false,
+            #[container]
+            gtk::Box {
+                orientation: gtk::Orientation::Horizontal,
+                margin_start: 20,
+                margin_end: 20,
+                margin_top: 8,
+                margin_bottom: 8,
+                spacing: 24
+            }
         }
     }
 }

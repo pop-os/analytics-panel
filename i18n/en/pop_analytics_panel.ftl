@@ -1,6 +1,4 @@
-hp-analytics-description =
-    We use analytics data such as system temperature, battery health, and fan
-    tachometry to improve the performance and efficacy of our devices.
+hp-analytics-description = We use analytics data such as system temperature, battery health, and fan tachometry to improve the performance and efficacy of our devices.
 
 agree-and-continue = Agree and Continue
 decline-and-continue = Decline and Continue
@@ -22,15 +20,15 @@ no-internet-header = Unable to Connect to the Internet
 try-again = Try Again
 see-data-sample = See the data sample.
 settings-notice = This setting can be changed at any time from the Settings application.
-hp-privacy-policy = HP Privacy Policy.
+hp-privacy-policy = HP Privacy Statement.
 hp-privacy-statement = HP Privacy Statement (Internet Connection Required).
 pop-privacy-policy = Pop!_OS Privacy Policy.
 hp-dev-one-analytics = HP Dev One Analytics
 hp-analytics-toggle-header = HP Analytics (Recommended)
 hp-analytics-toggle-description = Data is retained for two years or until it is deleted by the user.
-delete-data-option = Delete Data from HP
+delete-data-option = Delete {$model} Analytics Data from HP
 download = Download
-download-option = Download a copy of all data from HP in JSON format
+download-option = Download a copy of  {$model} Analytics Data in JSON format
 download-option-downloading = Downloading data archive
 data-downloaded-header = Download Data
 data-downloaded-description = Data has been downloaded
