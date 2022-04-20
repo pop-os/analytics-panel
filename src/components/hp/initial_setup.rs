@@ -5,9 +5,10 @@ use gtk::prelude::*;
 use std::rc::Rc;
 
 pub struct Model {
-    callback: Rc<Box<dyn Fn(bool)>>,
+    callback: Rc<dyn Fn(bool)>,
     background: relm::Sender<Message>,
-    purpose: Option<(String, String, String, String)>,
+    purpose: (String, String, String, String),
+    purpose_statement: String,
     relm: relm::Relm<Widget>,
 }
 
@@ -17,8 +18,6 @@ pub enum Message {
     Decline,
     DisplaySample,
     OpenWebpage(&'static str),
-    PurposeAndOpt(super::PurposeAndOpt),
-    PurposeStatement(String),
 }
 
 #[relm_derive::widget]
@@ -56,14 +55,6 @@ impl relm::Widget for Widget {
             .style_context()
             .add_class("dim-label");
 
-        let tx = self.model.background.clone();
-        glib::MainContext::default().spawn_local(async move {
-            if let Ok(purpose_and_opt) = super::purpose_and_opted(false).await {
-                tx.send(Message::PurposeAndOpt(purpose_and_opt));
-            } else {
-                // TODO? Shouldn't happen if hp-vendor installed correctly
-            }
-        });
     }
 
     fn model(relm: &relm::Relm<Self>, callback: Box<dyn Fn(bool)>) -> Model {
@@ -73,10 +64,14 @@ impl relm::Widget for Widget {
             stream.emit(message);
         });
 
+        let (language, region, purpose) =
+            super::purpose_for_locale(hp_vendor_client::static_purposes());
+
         Model {
-            callback: Rc::new(callback),
+            callback: Rc::from(callback),
             background: sender,
-            purpose: None,
+            purpose: (language, region, purpose.purpose_id, purpose.version),
+            purpose_statement: purpose.statement,
             relm: relm.clone(),
         }
     }
@@ -84,46 +79,27 @@ impl relm::Widget for Widget {
     fn update(&mut self, message: Message) {
         match message {
             Message::Agree => {
-                if let Some(purpose) = self.model.purpose.clone() {
-                    let callback = self.model.callback.clone();
-                    glib::MainContext::default().spawn_local(async move {
-                        super::toggle(purpose, true).await;
-                        (callback)(true);
-                    });
-                }
+                let purpose = self.model.purpose.clone();
+                let callback = self.model.callback.clone();
+                glib::MainContext::default().spawn_local(async move {
+                    super::toggle(purpose, true).await;
+                    (callback)(true);
+                });
             }
 
             Message::Decline => {
-                if let Some(purpose) = self.model.purpose.clone() {
-                    let callback = self.model.callback.clone();
-                    glib::MainContext::default().spawn_local(async move {
-                        super::toggle(purpose, false).await;
-                        (callback)(false);
-                    });
-                }
+                let purpose = self.model.purpose.clone();
+                let callback = self.model.callback.clone();
+                glib::MainContext::default().spawn_local(async move {
+                    super::toggle(purpose, false).await;
+                    (callback)(false);
+                });
             }
 
             Message::DisplaySample => {}
 
             Message::OpenWebpage(url) => {
                 crate::misc::xdg_open(url);
-            }
-
-            Message::PurposeAndOpt(super::PurposeAndOpt {
-                language,
-                region,
-                purpose,
-                opted,
-            }) => {
-                {
-                    let _lock = self.model.relm.stream().lock();
-                }
-                self.widgets.purpose_statement.set_text(&purpose.statement);
-                self.model.purpose = Some((language, region, purpose.purpose_id, purpose.version));
-            }
-
-            Message::PurposeStatement(statement) => {
-                self.widgets.purpose_statement.set_text(&statement);
             }
         }
     }
@@ -178,7 +154,7 @@ impl relm::Widget for Widget {
 
             #[name="purpose_statement"]
             gtk::Label {
-                label: &fl!("hp-analytics-prompt"),
+                label: &self.model.purpose_statement,
             },
 
             gtk::Box {

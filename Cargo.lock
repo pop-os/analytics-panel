@@ -552,7 +552,7 @@ dependencies = [
 [[package]]
 name = "hp-vendor-client"
 version = "0.1.0"
-source = "git+https://github.com/pop-os/hp-vendor#b6ed4c0bbe215f5e612b4ea413fb72ba6a0b20f3"
+source = "git+https://github.com/pop-os/hp-vendor#c02b82e1773214f4269d1423f6b7dde84c2bc709"
 dependencies = [
  "once_cell",
  "serde",

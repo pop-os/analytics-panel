@@ -104,7 +104,7 @@ async fn download(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::
     .await
 }
 
-fn purpose_for_locale(
+pub fn purpose_for_locale(
     mut purposes: HashMap<String, hp_vendor_client::DataCollectionPurpose>,
 ) -> (String, String, hp_vendor_client::DataCollectionPurpose) {
     let locale = locale_config::Locale::current();

@@ -1,8 +1,6 @@
 hp-analytics-description =
     We use analytics data such as system temperature, battery health, and fan
     tachometry to improve the performance and efficacy of our devices.
-hp-analytics-prompt =
-    HP may use information about my system to improve HP products and services.
 
 agree-and-continue = Agree and Continue
 decline-and-continue = Decline and Continue
