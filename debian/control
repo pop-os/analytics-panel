@@ -8,6 +8,7 @@ Build-Depends:
   just,
   rustc,
   libgtk-3-dev,
+  libhandy-1-dev,
   pkexec,
   pkg-config,
 Standards-Version: 4.3.0

@@ -695,6 +695,42 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06e509672465a0504304aa87f9f176f2b2b716ed8fb105ebe5c02dc6dce96a94"
 
 [[package]]
+name = "libhandy"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c4a9a0bc88fb8ba74c1cc8ff6b8c34dfb6dc0e97bc62cd96cc2fdc9a47aebe2"
+dependencies = [
+ "bitflags",
+ "gdk",
+ "gdk-pixbuf",
+ "gio",
+ "glib",
+ "gtk",
+ "lazy_static",
+ "libc",
+ "libhandy-sys",
+ "pango",
+]
+
+[[package]]
+name = "libhandy-sys"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fcb7c1c11d53e8a2a0c19742f23f36ff0ccf39d9a1e96c7f44054db217adc609"
+dependencies = [
+ "gdk-pixbuf-sys",
+ "gdk-sys",
+ "gio-sys",
+ "glib-sys",
+ "gobject-sys",
+ "gtk-sys",
+ "libc",
+ "pango-sys",
+ "pkg-config",
+ "system-deps",
+]
+
+[[package]]
 name = "locale_config"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -899,6 +935,7 @@ dependencies = [
  "hp-vendor-client",
  "i18n-embed",
  "i18n-embed-fl",
+ "libhandy",
  "locale_config",
  "once_cell",
  "relm",

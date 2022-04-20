@@ -116,8 +116,6 @@ impl relm::Widget for Widget {
             ..add_widget(&self.widgets.delete_button);
         };
 
-        use crate::clamp::BinClamp;
-        self.widgets.root.bin_clamp(300, 600, 80);
         self.widgets.content.add(self.model.summary.widget());
         self.widgets
             .content
@@ -249,96 +247,100 @@ impl relm::Widget for Widget {
     }
 
     relm::view! {
-        #[name="root"]
         gtk::ScrolledWindow {
             hscrollbar_policy: gtk::PolicyType::Never,
 
-            #[name="content"]
-            gtk::Box {
-                margin_bottom: 48,
-                margin_top: 48,
-                spacing: 6,
-                halign: gtk::Align::Center,
-                orientation: gtk::Orientation::Vertical,
+            libhandy::Clamp {
+                margin_top: 36,
+                margin_bottom: 36,
+                margin_start: 12,
+                margin_end: 12,
 
-                #[name="list_box"]
-                gtk::ListBox {
-                    selection_mode: gtk::SelectionMode::None,
-                    header_func: Some(Box::new(header_func)),
+                #[name="content"]
+                gtk::Box {
+                    spacing: 6,
+                    halign: gtk::Align::Center,
+                    orientation: gtk::Orientation::Vertical,
 
-                    InfoBox {
-                        gtk::Box {
-                            orientation: gtk::Orientation::Vertical,
-                            halign: gtk::Align::Start,
-                            hexpand: true,
-                            valign: gtk::Align::Center,
+                    #[name="list_box"]
+                    gtk::ListBox {
+                        selection_mode: gtk::SelectionMode::None,
+                        header_func: Some(Box::new(header_func)),
 
-                            #[name="purpose_statement"]
-                            gtk::Label {
-                                ellipsize: gtk::pango::EllipsizeMode::End,
-                                label: &self.model.purpose_statement,
-                                xalign: 0.0,
-                            },
-                        },
-
-                        #[name="toggle"]
-                        gtk::Switch {
-                            valign: gtk::Align::Center,
-                            sensitive: false,
-                            changed_active => Message::Toggle
-                        }
-                    },
-
-                    InfoBox {
-                        gtk::Label {
-                            halign: gtk::Align::Start,
-                            hexpand: true,
-                            valign: gtk::Align::Center,
-                            ellipsize: gtk::pango::EllipsizeMode::End,
-                            label: &fl!("delete-data-option", model=MODEL),
-                            xalign: 0.0,
-                        },
-
-                        #[name="delete_button"]
-                        gtk::Button {
-                            label: &fl!("delete"),
-                            clicked => Message::DeleteDialog,
-                        }
-                    },
-
-                    InfoBox {
-                        #[name="download_stack"]
-                        gtk::Stack {
-                            halign: gtk::Align::Start,
-                            hexpand: true,
-                            valign: gtk::Align::Center,
-
-                            #[name="download_label"]
-                            gtk::Label {
-                                ellipsize: gtk::pango::EllipsizeMode::End,
-                                label: &fl!("download-option", model=MODEL),
-                                xalign: 0.0,
-                            },
-
-                            #[name="download_progress"]
+                        InfoBox {
                             gtk::Box {
                                 orientation: gtk::Orientation::Vertical,
+                                halign: gtk::Align::Start,
+                                hexpand: true,
+                                valign: gtk::Align::Center,
 
+                                #[name="purpose_statement"]
                                 gtk::Label {
                                     ellipsize: gtk::pango::EllipsizeMode::End,
-                                    label: &fl!("download-option-downloading"),
+                                    label: &self.model.purpose_statement,
                                     xalign: 0.0,
                                 },
+                            },
 
-                                #[name="download_progress_bar"]
-                                gtk::ProgressBar {}
+                            #[name="toggle"]
+                            gtk::Switch {
+                                valign: gtk::Align::Center,
+                                sensitive: false,
+                                changed_active => Message::Toggle
                             }
                         },
 
-                        #[name="download_button"]
-                        gtk::Button {
-                            label: &fl!("download"),
-                            clicked => Message::Download
+                        InfoBox {
+                            gtk::Label {
+                                halign: gtk::Align::Start,
+                                hexpand: true,
+                                valign: gtk::Align::Center,
+                                ellipsize: gtk::pango::EllipsizeMode::End,
+                                label: &fl!("delete-data-option", model=MODEL),
+                                xalign: 0.0,
+                            },
+
+                            #[name="delete_button"]
+                            gtk::Button {
+                                label: &fl!("delete"),
+                                clicked => Message::DeleteDialog,
+                            }
+                        },
+
+                        InfoBox {
+                            #[name="download_stack"]
+                            gtk::Stack {
+                                halign: gtk::Align::Start,
+                                hexpand: true,
+                                valign: gtk::Align::Center,
+
+                                #[name="download_label"]
+                                gtk::Label {
+                                    ellipsize: gtk::pango::EllipsizeMode::End,
+                                    label: &fl!("download-option", model=MODEL),
+                                    xalign: 0.0,
+                                },
+
+                                #[name="download_progress"]
+                                gtk::Box {
+                                    orientation: gtk::Orientation::Vertical,
+
+                                    gtk::Label {
+                                        ellipsize: gtk::pango::EllipsizeMode::End,
+                                        label: &fl!("download-option-downloading"),
+                                        xalign: 0.0,
+                                    },
+
+                                    #[name="download_progress_bar"]
+                                    gtk::ProgressBar {}
+                                }
+                            },
+
+                            #[name="download_button"]
+                            gtk::Button {
+                                label: &fl!("download"),
+                                clicked => Message::Download
+                            }
                         }
                     }
                 }
