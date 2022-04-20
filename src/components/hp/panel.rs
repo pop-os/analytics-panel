@@ -68,6 +68,9 @@ impl Widget {
                         stream.emit(dialog::Message::Update(dialog::Variant::NoDataFound));
                         return;
                     }
+                }  else if let hp_vendor_client::Error::Reqwest(_message) = &err {
+                    stream.emit(dialog::Message::Update(dialog::Variant::NoInternet));
+                    return;
                 }
 
                 stream.emit(dialog::Message::Update(dialog::Variant::Error(err)));
