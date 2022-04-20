@@ -2,9 +2,10 @@ use crate::fl;
 
 use concat_in_place::strcat;
 use gtk::prelude::*;
+use std::rc::Rc;
 
 pub struct Model {
-    callback: Box<dyn Fn(bool)>,
+    callback: Rc<Box<dyn Fn(bool)>>,
     background: relm::Sender<Message>,
     purpose: Option<(String, String, String, String)>,
     relm: relm::Relm<Widget>,
@@ -73,7 +74,7 @@ impl relm::Widget for Widget {
         });
 
         Model {
-            callback,
+            callback: Rc::new(callback),
             background: sender,
             purpose: None,
             relm: relm.clone(),
@@ -84,20 +85,22 @@ impl relm::Widget for Widget {
         match message {
             Message::Agree => {
                 if let Some(purpose) = self.model.purpose.clone() {
+                    let callback = self.model.callback.clone();
                     glib::MainContext::default().spawn_local(async move {
                         super::toggle(purpose, true).await;
+                        (callback)(true);
                     });
                 }
-                (self.model.callback)(true);
             }
 
             Message::Decline => {
                 if let Some(purpose) = self.model.purpose.clone() {
+                    let callback = self.model.callback.clone();
                     glib::MainContext::default().spawn_local(async move {
                         super::toggle(purpose, false).await;
+                        (callback)(false);
                     });
                 }
-                (self.model.callback)(false);
             }
 
             Message::DisplaySample => {}
