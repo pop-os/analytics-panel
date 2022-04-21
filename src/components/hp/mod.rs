@@ -188,3 +188,9 @@ pub fn message_dialog(
 
     component
 }
+
+pub fn sample_buffer() -> gtk::TextBuffer {
+    let buffer = gtk::TextBuffer::new(None::<&gtk::TextTagTable>);
+    buffer.set_text(include_str!("../../../sample.json"));
+    buffer
+}

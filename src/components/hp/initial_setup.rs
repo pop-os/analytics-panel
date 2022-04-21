@@ -140,6 +140,7 @@ impl relm::Widget for Widget {
 
                 #[name="sample_text"]
                 gtk::TextView {
+                    buffer: Some(&super::sample_buffer()),
                     cursor_visible: false,
                     editable: false,
                     wrap_mode: gtk::WrapMode::Word,
