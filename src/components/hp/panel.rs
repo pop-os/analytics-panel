@@ -68,7 +68,7 @@ impl Widget {
                         stream.emit(dialog::Message::Update(dialog::Variant::NoDataFound));
                         return;
                     }
-                }  else if let hp_vendor_client::Error::Reqwest(_message) = &err {
+                } else if let hp_vendor_client::Error::Reqwest(_message) = &err {
                     stream.emit(dialog::Message::Update(dialog::Variant::NoInternet));
                     return;
                 }
@@ -276,7 +276,7 @@ impl relm::Widget for Widget {
 
                                 #[name="purpose_statement"]
                                 gtk::Label {
-                                    ellipsize: gtk::pango::EllipsizeMode::End,
+                                    line_wrap: true,
                                     label: &self.model.purpose_statement,
                                     xalign: 0.0,
                                 },
@@ -295,7 +295,7 @@ impl relm::Widget for Widget {
                                 halign: gtk::Align::Start,
                                 hexpand: true,
                                 valign: gtk::Align::Center,
-                                ellipsize: gtk::pango::EllipsizeMode::End,
+                                line_wrap: true,
                                 label: &fl!("delete-data-option", model=MODEL),
                                 xalign: 0.0,
                             },
@@ -316,7 +316,7 @@ impl relm::Widget for Widget {
 
                                 #[name="download_label"]
                                 gtk::Label {
-                                    ellipsize: gtk::pango::EllipsizeMode::End,
+                                    line_wrap: true,
                                     label: &fl!("download-option", model=MODEL),
                                     xalign: 0.0,
                                 },
