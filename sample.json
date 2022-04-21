@@ -1,1 +1,2354 @@
-
+[
+  {
+    "data": [
+      {
+        "hw_display": {
+          "bus_id": "",
+          "pixel_height": 1080,
+          "pixel_width": 1920,
+          "port": "EmbeddedDisplayPort-1",
+          "state": "added"
+        }
+      },
+      {
+        "hw_display": {
+          "bus_id": "",
+          "pixel_height": 1440,
+          "pixel_width": 2560,
+          "port": "DisplayPort-3",
+          "state": "added"
+        }
+      },
+      {
+        "hw_display": {
+          "bus_id": "",
+          "pixel_height": 1440,
+          "pixel_width": 2560,
+          "port": "DisplayPort-4",
+          "state": "added"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "Linux 5.16.15-76051615-generic xhci-hcd",
+          "manufacturer_id": "1d6b",
+          "product": "xHCI Host Controller",
+          "product_id": "0002",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 1,
+          "usb_device_id": "1",
+          "usb_speed": "480"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "Realtek",
+          "manufacturer_id": "0bda",
+          "product": "Bluetooth Radio",
+          "product_id": "b00c",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 1,
+          "usb_device_id": "2",
+          "usb_speed": "12"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "Linux 5.16.15-76051615-generic xhci-hcd",
+          "manufacturer_id": "1d6b",
+          "product": "xHCI Host Controller",
+          "product_id": "0003",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 2,
+          "usb_device_id": "1",
+          "usb_speed": "10000"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "Linux 5.16.15-76051615-generic xhci-hcd",
+          "manufacturer_id": "1d6b",
+          "product": "xHCI Host Controller",
+          "product_id": "0002",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 3,
+          "usb_device_id": "1",
+          "usb_speed": "480"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "Microchip",
+          "manufacturer_id": "3384",
+          "product": "USB4206 Smart Hub",
+          "product_id": "0003",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 3,
+          "usb_device_id": "3",
+          "usb_speed": "480"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "Logitech",
+          "manufacturer_id": "046d",
+          "product": "USB Receiver",
+          "product_id": "c52b",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 3,
+          "usb_device_id": "4",
+          "usb_speed": "12"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "HP",
+          "manufacturer_id": "03f0",
+          "product": "HP Wireless Micro-receiver",
+          "product_id": "544a",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 3,
+          "usb_device_id": "5",
+          "usb_speed": "12"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "System76",
+          "manufacturer_id": "3384",
+          "product": "Launch Configurable Keyboard (launch_1)",
+          "product_id": "0001",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 3,
+          "usb_device_id": "6",
+          "usb_speed": "12"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "Quanta",
+          "manufacturer_id": "0408",
+          "product": "HP HD Camera",
+          "product_id": "5378",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 3,
+          "usb_device_id": "2",
+          "usb_speed": "480"
+        }
+      },
+      {
+        "hw_peripheral_usb": {
+          "manufacturer": "Linux 5.16.15-76051615-generic xhci-hcd",
+          "manufacturer_id": "1d6b",
+          "product": "xHCI Host Controller",
+          "product_id": "0003",
+          "state": "added",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "usb_bus_id": 4,
+          "usb_device_id": "1",
+          "usb_speed": "10000"
+        }
+      },
+      {
+        "hw_base_board": {
+          "base_board_id": "8A78",
+          "ct_number": "ABCDE",
+          "manufacturer": "HP",
+          "version": "KBC Version 01.00"
+        }
+      },
+      {
+        "hw_battery": {
+          "ct_number": "ABCDE",
+          "devicename": "KC04XL",
+          "energy_design": 4590,
+          "manufacturer": "HP",
+          "serial_number": "ABCDE",
+          "state": "added",
+          "voltage_design": 11550
+        }
+      },
+      {
+        "hw_battery_life": {
+          "ct_number": "ABCDE",
+          "cycle_count": 36,
+          "energy_full": 4471,
+          "serial_number": "ABCDE",
+          "timestamp": "2022-04-21T16:13:24+00:00",
+          "total_ac_time": 0,
+          "total_dc_time": 0
+        }
+      },
+      {
+        "hw_memory_physical": {
+          "bank_label": "P0 CHANNEL A",
+          "data_width": 64,
+          "form_factor": "SODIMM",
+          "locator": "Bottom-slot 1(left)",
+          "manufacturer": "Hynix",
+          "part_number": "HMA81GS6DJR8N-XN    ",
+          "rank": 1,
+          "serial_number": "ABCDE",
+          "size": 8192,
+          "speed": 3200,
+          "state": "added",
+          "type": "DDR4"
+        }
+      },
+      {
+        "hw_memory_physical": {
+          "bank_label": "P0 CHANNEL B",
+          "data_width": 64,
+          "form_factor": "SODIMM",
+          "locator": "Bottom-slot 2(right)",
+          "manufacturer": "Hynix",
+          "part_number": "HMA81GS6DJR8N-XN    ",
+          "rank": 1,
+          "serial_number": "ABCDE",
+          "size": 8192,
+          "speed": 3200,
+          "state": "added",
+          "type": "DDR4"
+        }
+      },
+      {
+        "hw_processor": {
+          "caches": [
+            {
+              "name": "L1 Unified-Cache",
+              "size": 512
+            },
+            {
+              "name": "L2 Unified-Cache",
+              "size": 4096
+            },
+            {
+              "name": "L3 Unified-Cache",
+              "size": 16384
+            }
+          ],
+          "cores_count": 8,
+          "cores_enabled": 8,
+          "device_id": "",
+          "manufacturer": "Advanced Micro Devices, Inc.",
+          "max_clock_speed": 4450,
+          "name": "AMD Ryzen 7 PRO 5850U with Radeon Graphics     ",
+          "processor_id": "178BFBFF00A50F00",
+          "socket": "FP6",
+          "state": "added",
+          "thread_count": 16,
+          "voltage": 14.0
+        }
+      },
+      {
+        "hw_system": {
+          "chassis": "10",
+          "family": "HP Dev One Notebook PC",
+          "manufacturer": "HP",
+          "model": "Dev One Notebook PC",
+          "serialnumber": "0000000000",
+          "sku": "1234567#ABA",
+          "version": ""
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Konstantin Komarov",
+          "description": "ntfs3 read/write filesystem",
+          "module_name": "ntfs3",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/fs/ntfs3/ntfs3.ko",
+          "module_type": "",
+          "size": 274432,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Samsung Electronics Co., Ltd.",
+          "description": "exFAT filesystem support",
+          "module_name": "exfat",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/fs/exfat/exfat.ko",
+          "module_type": "",
+          "size": 90112,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Hans de Goede <hdegoede@redhat.com>, Matthew Wilcox and Sarah Sharp",
+          "module_name": "uas",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/usb/storage/uas.ko",
+          "module_type": "",
+          "size": 28672,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Matthew Dharm <mdharm-usb@one-eyed-alien.net>",
+          "description": "USB Mass Storage driver for Linux",
+          "module_name": "usb_storage",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/usb/storage/usb-storage.ko",
+          "module_type": "",
+          "size": 73728,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Nestor Lopez Casado <nlopezcasad@logitech.com>\nBenjamin Tissoires <benjamin.tissoires@gmail.com>",
+          "module_name": "hid_logitech_hidpp",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hid/hid-logitech-hidpp.ko",
+          "module_type": "",
+          "size": 49152,
+          "state": "added"
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  },
+  {
+    "data": [
+      {
+        "sw_driver": {
+          "author": "nlopezcasad@logitech.com\nNestor Lopez Casado\nLogitech",
+          "module_name": "hid_logitech_dj",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hid/hid-logitech-dj.ko",
+          "module_type": "",
+          "size": 28672,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jiri Kosina\nVojtech Pavlik\nAndreas Gal",
+          "description": "USB HID core driver",
+          "module_name": "usbhid",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hid/usbhid/usbhid.ko",
+          "module_type": "",
+          "size": 65536,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Thomas Renninger <trenn@suse.de>",
+          "description": "ACPI EC sysfs access driver",
+          "module_name": "ec_sys",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/acpi/ec_sys.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Mellanox Technologies",
+          "description": "Transport Layer Security Support",
+          "module_name": "tls",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/tls/tls.ko",
+          "module_type": "",
+          "size": 110592,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "nvme_fabrics",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/nvme/host/nvme-fabrics.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Counter with CBC MAC",
+          "module_name": "ccm",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/ccm.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Marcel Holtmann <marcel@holtmann.org>",
+          "description": "Bluetooth RFCOMM ver 1.11",
+          "driver_version": "1.11",
+          "module_name": "rfcomm",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/bluetooth/rfcomm/rfcomm.ko",
+          "module_type": "",
+          "size": 81920,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Michael S. Tsirkin <mst@redhat.com>",
+          "description": "Xtables: checksum modification",
+          "module_name": "xt_CHECKSUM",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/xt_CHECKSUM.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Netfilter Core Team <coreteam@netfilter.org>",
+          "description": "Xtables: automatic-address SNAT",
+          "module_name": "xt_MASQUERADE",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/xt_MASQUERADE.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jan Engelhardt <jengelh@medozas.de>\nMarc Boucher <marc@mbsi.ca>",
+          "description": "Xtables: connection tracking state match",
+          "module_name": "xt_conntrack",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/xt_conntrack.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Netfilter Core Team <coreteam@netfilter.org>",
+          "description": "Xtables: packet \"rejection\" target for IPv4",
+          "module_name": "ipt_REJECT",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/ipv4/netfilter/ipt_REJECT.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "nf_reject_ipv4",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/ipv4/netfilter/nf_reject_ipv4.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Xtables: TCP, UDP and UDP-Lite match",
+          "module_name": "xt_tcpudp",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/xt_tcpudp.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Pablo Neira Ayuso <pablo@netfilter.org>",
+          "description": "x_tables over nftables support",
+          "module_name": "nft_compat",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/nft_compat.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "nft_chain_nat",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/nft_chain_nat.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "nf_nat",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/nf_nat.ko",
+          "module_type": "",
+          "size": 49152,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "nf_conntrack",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/nf_conntrack.ko",
+          "module_type": "",
+          "size": 167936,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "nf_defrag_ipv6",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/ipv6/netfilter/nf_defrag_ipv6.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  },
+  {
+    "data": [
+      {
+        "sw_driver": {
+          "module_name": "nf_defrag_ipv4",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/ipv4/netfilter/nf_defrag_ipv4.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Patrick McHardy <kaber@trash.net>",
+          "description": "nftables counter rule support",
+          "module_name": "nft_counter",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/nft_counter.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Takashi Iwai <tiwai@suse.de>",
+          "description": "ALSA sequencer MIDI-through client",
+          "module_name": "snd_seq_dummy",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/seq/snd-seq-dummy.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Takashi Iwai <tiwai@suse.de>",
+          "description": "ALSA hrtimer backend",
+          "module_name": "snd_hrtimer",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/snd-hrtimer.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Patrick McHardy <kaber@trash.net>",
+          "module_name": "nf_tables",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/nf_tables.ko",
+          "module_type": "",
+          "size": 245760,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Harald Welte <laforge@netfilter.org>",
+          "description": "Netfilter messages via netlink socket",
+          "module_name": "nfnetlink",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/nfnetlink.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "driver_version": "2.3",
+          "module_name": "bridge",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/bridge/bridge.ko",
+          "module_type": "",
+          "size": 303104,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "stp",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/802/stp.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Procom 1997, Jay Schullist 2001, Arnaldo C. Melo 2001-2003",
+          "description": "LLC IEEE 802.2 core support",
+          "module_name": "llc",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/llc/llc.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "CMAC keyed hash algorithm",
+          "module_name": "cmac",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/cmac.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "algif_hash",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/algif_hash.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "algif_skcipher",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/algif_skcipher.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "af_alg",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/af_alg.ko",
+          "module_type": "",
+          "size": 32768,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Marcel Holtmann <marcel@holtmann.org>",
+          "description": "Bluetooth BNEP ver 1.3",
+          "driver_version": "1.3",
+          "module_name": "bnep",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/bluetooth/bnep/bnep.ko",
+          "module_type": "",
+          "size": 28672,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jaroslav Kysela <perex@perex.cz>",
+          "description": "ALSA control interface to LED trigger code.",
+          "module_name": "snd_ctl_led",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/snd-ctl-led.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Zhang Rui <rui.zhang@intel.com>",
+          "description": "Driver for Intel RAPL (Running Average Power Limit) control via MSR interface",
+          "module_name": "intel_rapl_msr",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/powercap/intel_rapl_msr.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Vojtech Pavlik <vojtech@ucw.cz>",
+          "description": "Joystick device interfaces",
+          "module_name": "joydev",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/input/joydev.ko",
+          "module_type": "",
+          "size": 32768,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jacob Pan <jacob.jun.pan@intel.com>",
+          "description": "Intel Runtime Average Power Limit (RAPL) common code",
+          "module_name": "intel_rapl_common",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/powercap/intel_rapl_common.ko",
+          "module_type": "",
+          "size": 36864,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Realtek HD-audio codec",
+          "module_name": "snd_hda_codec_realtek",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/pci/hda/snd-hda-codec-realtek.ko",
+          "module_type": "",
+          "size": 151552,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Generic HD-audio codec parser",
+          "module_name": "snd_hda_codec_generic",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/pci/hda/snd-hda-codec-generic.ko",
+          "module_type": "",
+          "size": 102400,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "LED trigger for audio mute control",
+          "module_name": "ledtrig_audio",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/leds/trigger/ledtrig-audio.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "HDMI HD-audio codec",
+          "module_name": "snd_hda_codec_hdmi",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/pci/hda/snd-hda-codec-hdmi.ko",
+          "module_type": "",
+          "size": 73728,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Realtek Corporation",
+          "description": "Realtek 802.11ac wireless 8822ce driver",
+          "module_name": "rtw88_8822ce",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/net/wireless/realtek/rtw88/rtw88_8822ce.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Realtek Corporation",
+          "description": "Realtek 802.11ac wireless 8822c driver",
+          "module_name": "rtw88_8822c",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/net/wireless/realtek/rtw88/rtw88_8822c.ko",
+          "module_type": "",
+          "size": 503808,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "AMD MCE decoder",
+          "module_name": "edac_mce_amd",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/edac/edac_mce_amd.ko",
+          "module_type": "",
+          "size": 36864,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Intel HDA driver",
+          "module_name": "snd_hda_intel",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/pci/hda/snd-hda-intel.ko",
+          "module_type": "",
+          "size": 53248,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Realtek Corporation",
+          "description": "Realtek 802.11ac wireless PCI driver",
+          "module_name": "rtw88_pci",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/net/wireless/realtek/rtw88/rtw88_pci.ko",
+          "module_type": "",
+          "size": 32768,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Intel DSP config driver",
+          "module_name": "snd_intel_dspcfg",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/hda/snd-intel-dspcfg.ko",
+          "module_type": "",
+          "size": 28672,
+          "state": "added"
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  },
+  {
+    "data": [
+      {
+        "sw_driver": {
+          "description": "Intel Soundwire ACPI helpers",
+          "module_name": "snd_intel_sdw_acpi",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/hda/snd-intel-sdw-acpi.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Realtek Corporation",
+          "description": "Realtek 802.11ac wireless core module",
+          "module_name": "rtw88_core",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/net/wireless/realtek/rtw88/rtw88_core.ko",
+          "module_type": "",
+          "size": 258048,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "HDA codec core",
+          "module_name": "snd_hda_codec",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/pci/hda/snd-hda-codec.ko",
+          "module_type": "",
+          "size": 155648,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Qumranet",
+          "module_name": "kvm_amd",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/arch/x86/kvm/kvm-amd.ko",
+          "module_type": "",
+          "size": 155648,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "binfmt_misc",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/fs/binfmt_misc.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "HD-audio bus",
+          "module_name": "snd_hda_core",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/hda/snd-hda-core.ko",
+          "module_type": "",
+          "size": 110592,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Laurent Pinchart <laurent.pinchart@ideasonboard.com>",
+          "description": "USB Video Class driver",
+          "driver_version": "1.1.1",
+          "module_name": "uvcvideo",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/usb/uvc/uvcvideo.ko",
+          "module_type": "",
+          "size": 110592,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jaroslav Kysela <perex@perex.cz>",
+          "description": "Hardware dependent layer",
+          "module_name": "snd_hwdep",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/snd-hwdep.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Qumranet",
+          "module_name": "kvm",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/arch/x86/kvm/kvm.ko",
+          "module_type": "",
+          "size": 1011712,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Pawel Osciak <pawel@osciak.com>",
+          "description": "vmalloc memory handling routines for videobuf2",
+          "module_name": "videobuf2_vmalloc",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/common/videobuf2/videobuf2-vmalloc.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Frank van de Pol <fvdpol@coil.demon.nl>, Jaroslav Kysela <perex@perex.cz>",
+          "description": "Advanced Linux Sound Architecture sequencer MIDI synth.",
+          "module_name": "snd_seq_midi",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/seq/snd-seq-midi.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jeremy Soller <jeremy@system76.com>",
+          "description": "HP Vendor Driver",
+          "module_name": "hp_vendor",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/updates/dkms/hp_vendor.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "nls_iso8859_1",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/fs/nls/nls_iso8859-1.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "IEEE 802.11 subsystem",
+          "module_name": "mac80211",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/mac80211/mac80211.ko",
+          "module_type": "",
+          "size": 1241088,
+          "state": "added"
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  },
+  {
+    "data": [
+      {
+        "sw_driver": {
+          "author": "Pawel Osciak <pawel@osciak.com>",
+          "description": "common memory handling routines for videobuf2",
+          "module_name": "videobuf2_memops",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/common/videobuf2/videobuf2-memops.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Takashi Iwai <tiwai@suse.de>, Jaroslav Kysela <perex@perex.cz>",
+          "description": "MIDI byte <-> sequencer event coder",
+          "module_name": "snd_seq_midi_event",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/seq/snd-seq-midi-event.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Pawel Osciak <pawel@osciak.com>, Marek Szyprowski",
+          "description": "Driver helper framework for Video for Linux 2",
+          "module_name": "videobuf2_v4l2",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/common/videobuf2/videobuf2-v4l2.ko",
+          "module_type": "",
+          "size": 32768,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jaroslav Kysela <perex@perex.cz>",
+          "description": "Midlevel RawMidi code for ALSA.",
+          "module_name": "snd_rawmidi",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/snd-rawmidi.ko",
+          "module_type": "",
+          "size": 45056,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Marcel Holtmann <marcel@holtmann.org>",
+          "description": "Generic Bluetooth USB driver ver 0.8",
+          "driver_version": "0.8",
+          "module_name": "btusb",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/bluetooth/btusb.ko",
+          "module_type": "",
+          "size": 57344,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Pawel Osciak <pawel@osciak.com>, Marek Szyprowski",
+          "description": "Media buffer core framework",
+          "module_name": "videobuf2_common",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/common/videobuf2/videobuf2-common.ko",
+          "module_type": "",
+          "size": 77824,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Vijendar.Mukunda@amd.com",
+          "description": "AMD ACP Yellow Carp PCI driver",
+          "module_name": "snd_pci_acp6x",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/soc/amd/yc/snd-pci-acp6x.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Daniel Drake <drake@endlessm.com>",
+          "description": "Bluetooth support for Realtek devices ver 0.1",
+          "driver_version": "0.1",
+          "module_name": "btrtl",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/bluetooth/btrtl.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Frank van de Pol <fvdpol@coil.demon.nl>, Jaroslav Kysela <perex@perex.cz>",
+          "description": "Advanced Linux Sound Architecture sequencer.",
+          "module_name": "snd_seq",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/seq/snd-seq.ko",
+          "module_type": "",
+          "size": 73728,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jaroslav Kysela <perex@perex.cz>, Abramo Bagnara <abramo@alsa-project.org>",
+          "description": "Midlevel PCM code for ALSA.",
+          "module_name": "snd_pcm",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/snd-pcm.ko",
+          "module_type": "",
+          "size": 143360,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Marcel Holtmann <marcel@holtmann.org>",
+          "description": "Bluetooth support for Broadcom devices ver 0.1",
+          "driver_version": "0.1",
+          "module_name": "btbcm",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/bluetooth/btbcm.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Matthew Garrett <mjg59@srcf.ucam.org>",
+          "description": "HP laptop WMI hotkeys driver",
+          "module_name": "hp_wmi",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/platform/x86/hp-wmi.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Alan Cox, Mauro Carvalho Chehab <mchehab@kernel.org>, Bill Dirks, Justin Schoeman, Gerd Knorr",
+          "description": "Video4Linux2 core driver",
+          "module_name": "videodev",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/v4l2-core/videodev.ko",
+          "module_type": "",
+          "size": 249856,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Dmitry Torokhov <dmitry.torokhov@gmail.com>\nSamuel Thibault <samuel.thibault@ens-lyon.org>",
+          "description": "Input -> LEDs Bridge",
+          "module_name": "input_leds",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/input/input-leds.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "rapl",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/arch/x86/events/rapl.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  },
+  {
+    "data": [
+      {
+        "sw_driver": {
+          "author": "Marcel Holtmann <marcel@holtmann.org>",
+          "description": "Bluetooth support for Intel devices ver 0.1",
+          "driver_version": "0.1",
+          "module_name": "btintel",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/bluetooth/btintel.ko",
+          "module_type": "",
+          "size": 40960,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Takashi Iwai <tiwai@suse.de>",
+          "description": "ALSA sequencer device management",
+          "module_name": "snd_seq_device",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/snd-seq-device.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Mark Pearson <markpearson@lenovo.com>",
+          "module_name": "platform_profile",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/acpi/platform_profile.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Laurent Pinchart <laurent.pinchart@ideasonboard.com>",
+          "description": "Device node registration for media drivers",
+          "module_name": "mc",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/mc/mc.ko",
+          "module_type": "",
+          "size": 65536,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Marcel Holtmann <marcel@holtmann.org>",
+          "description": "Bluetooth Core ver 2.22",
+          "driver_version": "2.22",
+          "module_name": "bluetooth",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/bluetooth/bluetooth.ko",
+          "module_type": "",
+          "size": 700416,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Dmitry Torokhov <dtor@mail.ru>",
+          "description": "Raw serio driver",
+          "module_name": "serio_raw",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/input/serio/serio_raw.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Dmitry Torokhov <dtor@mail.ru>",
+          "description": "Generic support for sparse keymaps",
+          "module_name": "sparse_keymap",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/input/sparse-keymap.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Johannes Berg",
+          "description": "wireless configuration support",
+          "module_name": "cfg80211",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/wireless/cfg80211.ko",
+          "module_type": "",
+          "size": 974848,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "ECDH generic algorithm",
+          "module_name": "ecdh_generic",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/ecdh_generic.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.de>",
+          "description": "ALSA timer interface",
+          "module_name": "snd_timer",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/snd-timer.ko",
+          "module_type": "",
+          "size": 40960,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "EFI variable backend for pstore",
+          "module_name": "efi_pstore",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/firmware/efi/efi-pstore.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Vijendar.Mukunda@amd.com",
+          "description": "AMD Vangogh ACP PCI driver",
+          "module_name": "snd_pci_acp5x",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/soc/amd/vangogh/snd-pci-acp5x.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "ecc",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/ecc.ko",
+          "module_type": "",
+          "size": 36864,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Benjamin Tissoires <benjamin.tissoires@gmail.com>\nStephane Chatty <chatty@enac.fr>",
+          "description": "HID multitouch panels",
+          "module_name": "hid_multitouch",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hid/hid-multitouch.ko",
+          "module_type": "",
+          "size": 28672,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Andrew Lutomirski <luto@kernel.org>",
+          "description": "WMI embedded Binary MOF driver",
+          "module_name": "wmi_bmof",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/platform/x86/wmi-bmof.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jaroslav Kysela <perex@perex.cz>",
+          "description": "Advanced Linux Sound Architecture driver for soundcards.",
+          "module_name": "snd",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/core/snd.ko",
+          "module_type": "",
+          "size": 102400,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Vijendar.Mukunda@amd.com",
+          "description": "AMD ACP Renoir PCI driver",
+          "module_name": "snd_rn_pci_acp3x",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/soc/amd/renoir/snd-rn-pci-acp3x.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "libarc4",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/lib/crypto/libarc4.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Maruthi.Bayyavarapu@amd.com\nVishnuvardhanrao.Ravulapati@amd.com",
+          "description": "AMD ACP3x PCI driver",
+          "module_name": "snd_pci_acp3x",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/soc/amd/raven/snd-pci-acp3x.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Alan Cox",
+          "description": "Core sound module",
+          "module_name": "soundcore",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/sound/soundcore.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Clemens Ladisch <clemens@ladisch.de>",
+          "description": "AMD Family 10h+ CPU core temperature monitor",
+          "module_name": "k10temp",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hwmon/k10temp.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Gary R Hook <gary.hook@amd.com>\nTom Lendacky <thomas.lendacky@amd.com>",
+          "description": "AMD Secure Processor driver",
+          "driver_version": "1.1.0",
+          "module_name": "ccp",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/crypto/ccp/ccp.ko",
+          "module_type": "",
+          "size": 102400,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Kevin Tsai <ktsai@capellamicro.com>",
+          "description": "CM32181 ambient light sensor driver",
+          "module_name": "cm32181",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/iio/light/cm32181.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  },
+  {
+    "data": [
+      {
+        "sw_driver": {
+          "author": "Jonathan Cameron <jic23@kernel.org>",
+          "description": "Industrial I/O core",
+          "module_name": "industrialio",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/iio/industrialio.ko",
+          "module_type": "",
+          "size": 94208,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "mac_hid",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/macintosh/mac_hid.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Rafael J. Wysocki",
+          "module_name": "acpi_tad",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/acpi/acpi_tad.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Alex Hung",
+          "module_name": "wireless_hotkey",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/platform/x86/wireless-hotkey.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Eric Dumazet",
+          "description": "Fair Queue CoDel discipline",
+          "module_name": "sch_fq_codel",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/sched/sch_fq_codel.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Corey Minyard <minyard@mvista.com>",
+          "description": "Linux device interface for the IPMI message handler.",
+          "module_name": "ipmi_devintf",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/char/ipmi/ipmi_devintf.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Corey Minyard <minyard@mvista.com>",
+          "description": "Incoming and outgoing message routing for an IPMI interface.",
+          "driver_version": "39.2",
+          "module_name": "ipmi_msghandler",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/char/ipmi/ipmi_msghandler.ko",
+          "module_type": "",
+          "size": 122880,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "H. Peter Anvin <hpa@zytor.com>",
+          "description": "x86 generic MSR driver",
+          "module_name": "msr",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/arch/x86/kernel/msr.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Phil Blundell, Tim Waugh, others",
+          "description": "PC-style parallel port driver",
+          "module_name": "parport_pc",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/parport/parport_pc.ko",
+          "module_type": "",
+          "size": 49152,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "ppdev",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/char/ppdev.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "lp",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/char/lp.ko",
+          "module_type": "",
+          "size": 28672,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "parport",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/parport/parport.ko",
+          "module_type": "",
+          "size": 65536,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Netfilter Core Team <coreteam@netfilter.org>",
+          "description": "IPv4 packet filter",
+          "module_name": "ip_tables",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/ipv4/netfilter/ip_tables.ko",
+          "module_type": "",
+          "size": 32768,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Harald Welte <laforge@netfilter.org>",
+          "description": "{ip,ip6,arp,eb}_tables backend module",
+          "module_name": "x_tables",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/net/netfilter/x_tables.ko",
+          "module_type": "",
+          "size": 53248,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "autofs4",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/fs/autofs/autofs4.ko",
+          "module_type": "",
+          "size": 45056,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jana Saout <jana@saout.de>",
+          "description": "device-mapper target for transparent encryption / decryption",
+          "module_name": "dm_crypt",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/md/dm-crypt.ko",
+          "module_type": "",
+          "size": 53248,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "RAID10 (striped mirror) personality for MD",
+          "module_name": "raid10",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/md/raid10.ko",
+          "module_type": "",
+          "size": 65536,
+          "state": "added"
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  },
+  {
+    "data": [
+      {
+        "sw_driver": {
+          "description": "RAID4/5/6 (striping with parity) personality for MD",
+          "module_name": "raid456",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/md/raid456.ko",
+          "module_type": "",
+          "size": 159744,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Dan Williams <dan.j.williams@intel.com>",
+          "description": "asynchronous RAID-6 recovery api",
+          "module_name": "async_raid6_recov",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/async_tx/async_raid6_recov.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Intel Corporation",
+          "description": "asynchronous memcpy api",
+          "module_name": "async_memcpy",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/async_tx/async_memcpy.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "asynchronous raid6 syndrome generation/validation",
+          "module_name": "async_pq",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/async_tx/async_pq.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Intel Corporation",
+          "description": "asynchronous xor/xor-zero-sum api",
+          "module_name": "async_xor",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/async_tx/async_xor.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Intel Corporation",
+          "description": "Asynchronous Bulk Memory Transactions API",
+          "module_name": "async_tx",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/async_tx/async_tx.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "xor",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/xor.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "RAID6 Q-syndrome calculations",
+          "module_name": "raid6_pq",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/lib/raid6/raid6_pq.ko",
+          "module_type": "",
+          "size": 122880,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Clay Haapala <chaapala@cisco.com>",
+          "description": "CRC32c (Castagnoli) calculations",
+          "module_name": "libcrc32c",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/lib/libcrc32c.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "RAID1 (mirroring) personality for MD",
+          "module_name": "raid1",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/md/raid1.ko",
+          "module_type": "",
+          "size": 49152,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "RAID0 (striping) personality for MD",
+          "module_name": "raid0",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/md/raid0.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "simple multi-path personality for MD (deprecated)",
+          "module_name": "multipath",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/md/multipath.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Linear device concatenation personality for MD (deprecated)",
+          "module_name": "linear",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/md/linear.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jeremy Soller <jeremy@system76.com>",
+          "description": "System76 Io driver",
+          "module_name": "system76_io",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/updates/dkms/system76-io.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jeremy Soller <jeremy@system76.com>",
+          "description": "System76 ACPI Driver",
+          "module_name": "system76_acpi",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/updates/dkms/system76_acpi.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "AMD linux driver team",
+          "description": "AMD GPU",
+          "module_name": "amdgpu",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/gpu/drm/amd/amdgpu/amdgpu.ko",
+          "module_type": "",
+          "size": 9814016,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Joerg Roedel <jroedel@suse.de>",
+          "module_name": "iommu_v2",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/iommu/amd/iommu_v2.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "DRM GPU scheduler",
+          "module_name": "gpu_sched",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/gpu/drm/scheduler/gpu-sched.ko",
+          "module_type": "",
+          "size": 45056,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Simon G. Vogl <simon@tk.uni-linz.ac.at>",
+          "description": "I2C-Bus bit-banging algorithm",
+          "module_name": "i2c_algo_bit",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/i2c/algos/i2c-algo-bit.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "DRM gem ttm helpers",
+          "module_name": "drm_ttm_helper",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/gpu/drm/drm_ttm_helper.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Thomas Hellstrom, Jerome Glisse",
+          "description": "TTM memory manager subsystem (for DRM device)",
+          "module_name": "ttm",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/gpu/drm/ttm/ttm.ko",
+          "module_type": "",
+          "size": 81920,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "David Airlie, Jesse Barnes",
+          "description": "DRM KMS helper",
+          "module_name": "drm_kms_helper",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/gpu/drm/drm_kms_helper.ko",
+          "module_type": "",
+          "size": 311296,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Antonino Daplas <adaplas@pol.net>",
+          "description": "Generic copyarea (sys-to-sys)",
+          "module_name": "syscopyarea",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/video/fbdev/core/syscopyarea.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Antonino Daplas <adaplas@pol.net>",
+          "description": "Generic fill rectangle (sys-to-sys)",
+          "module_name": "sysfillrect",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/video/fbdev/core/sysfillrect.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Antonino Daplas <adaplas@pol.net>",
+          "description": "1-bit/8-bit to 1-32 bit color expansion (sys-to-sys)",
+          "module_name": "sysimgblt",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/video/fbdev/core/sysimgblt.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Henrik Rydberg",
+          "description": "HID generic driver",
+          "module_name": "hid_generic",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hid/hid-generic.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  },
+  {
+    "data": [
+      {
+        "sw_driver": {
+          "author": "Antonino Daplas <adaplas@pol.net>",
+          "description": "Generic file read (fb in system RAM)",
+          "module_name": "fb_sys_fops",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/video/fbdev/core/fb_sys_fops.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Tim Chen <tim.c.chen@linux.intel.com>",
+          "description": "T10 DIF CRC calculation accelerated with PCLMULQDQ.",
+          "module_name": "crct10dif_pclmul",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/arch/x86/crypto/crct10dif-pclmul.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Alexander Boyko <alexander_boyko@xyratex.com>",
+          "module_name": "crc32_pclmul",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/arch/x86/crypto/crc32-pclmul.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "GHASH hash function, accelerated by PCLMULQDQ-NI",
+          "module_name": "ghash_clmulni_intel",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/arch/x86/crypto/ghash-clmulni-intel.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Hans Verkuil <hans.verkuil@cisco.com>",
+          "description": "Device node registration for cec drivers",
+          "module_name": "cec",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/cec/core/cec.ko",
+          "module_type": "",
+          "size": 77824,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Rijndael (AES) Cipher Algorithm, Intel AES-NI instructions optimized",
+          "module_name": "aesni_intel",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/arch/x86/crypto/aesni-intel.ko",
+          "module_type": "",
+          "size": 376832,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Matthew Wilcox <willy@linux.intel.com>",
+          "driver_version": "1.0",
+          "module_name": "nvme",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/nvme/host/nvme.ko",
+          "module_type": "",
+          "size": 49152,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Benjamin Tissoires <benjamin.tissoires@gmail.com>",
+          "description": "HID over I2C ACPI driver",
+          "module_name": "i2c_hid_acpi",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hid/i2c-hid/i2c-hid-acpi.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Mauro Carvalho Chehab",
+          "module_name": "rc_core",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/media/rc/rc-core.ko",
+          "module_type": "",
+          "size": 65536,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "crypto_simd",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/crypto_simd.ko",
+          "module_type": "",
+          "size": 16384,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Benjamin Tissoires <benjamin.tissoires@gmail.com>",
+          "description": "HID over I2C core driver",
+          "module_name": "i2c_hid",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hid/i2c-hid/i2c-hid.ko",
+          "module_type": "",
+          "size": 32768,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "xHCI PCI Host Controller Driver",
+          "module_name": "xhci_pci",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/usb/host/xhci-pci.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "description": "Software async crypto daemon",
+          "module_name": "cryptd",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/crypto/cryptd.ko",
+          "module_type": "",
+          "size": 24576,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Gareth Hughes, Leif Delgass, José Fonseca, Jon Smirl\nAjay Kumar <ajaykumar.rs@samsung.com>\nThierry Reding <treding@nvidia.com>",
+          "description": "DRM shared core routines\nDRM bridge infrastructure\nDRM panel infrastructure",
+          "module_name": "drm",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/gpu/drm/drm.ko",
+          "module_type": "",
+          "size": 606208,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "driver_version": "1.0",
+          "module_name": "nvme_core",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/nvme/host/nvme-core.ko",
+          "module_type": "",
+          "size": 126976,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Philip Edelbrock <phil@netroedge.com>\nFrodo Looijaard <frodol@dds.nl>",
+          "description": "PIIX4 SMBus driver",
+          "module_name": "i2c_piix4",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/i2c/busses/i2c-piix4.ko",
+          "module_type": "",
+          "size": 28672,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "module_name": "xhci_pci_renesas",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/usb/host/xhci-pci-renesas.ko",
+          "module_type": "",
+          "size": 20480,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Carlos Corbacho",
+          "description": "ACPI-WMI Mapping Driver",
+          "module_name": "wmi",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/platform/x86/wmi.ko",
+          "module_type": "",
+          "size": 32768,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Bruno Ducrot",
+          "description": "ACPI Video Driver",
+          "module_name": "video",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/acpi/video.ko",
+          "module_type": "",
+          "size": 53248,
+          "state": "added"
+        }
+      },
+      {
+        "sw_driver": {
+          "author": "Jiri Kosina\nVojtech Pavlik\nAndreas Gal",
+          "module_name": "hid",
+          "module_path": "/lib/modules/5.16.15-76051615-generic/kernel/drivers/hid/hid.ko",
+          "module_type": "",
+          "size": 147456,
+          "state": "added"
+        }
+      },
+      {
+        "sw_firmware": {
+          "bios_release_date": "2022-03-24",
+          "bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+          "bios_vendor": "Insyde",
+          "bios_version": "B.15",
+          "embedded_controller_version": "1.0",
+          "rom_size": 32,
+          "smbios_version": "3.3"
+        }
+      },
+      {
+        "sw_linux_kernel": {
+          "name": "Linux",
+          "release": "5.16.15-76051615-generic",
+          "version": "#202203161444~1647964027~22.04~e706226 SMP PREEMPT Tue Mar 22 17"
+        }
+      },
+      {
+        "sw_operating_system": {
+          "codename": "jammy",
+          "name": "Pop!_OS",
+          "version": "22.04 LTS"
+        }
+      },
+      {
+        "hw_nvme_smart_log": {
+          "available_spare": 100,
+          "available_spare_threshold": 5,
+          "controller_busy_time": 88,
+          "critical_composite_temp_threshold": 358,
+          "critical_composite_temp_time": 0,
+          "critical_warning": 0,
+          "data_units_read": 10407114,
+          "data_units_written": 3262613,
+          "endurance_critical_warning": 0,
+          "host_read_commands": 116025352,
+          "host_write_commands": 71887041,
+          "media_errors": -1,
+          "num_err_log_entries": 0,
+          "nvme_version": "1.3",
+          "percentage_used": 0,
+          "power_cycles": 110,
+          "power_on_hours": 1052,
+          "serial_number": "ABCDE",
+          "temp_sensor": [
+            306,
+            311
+          ],
+          "thermal_management_total_time": [
+            0,
+            0
+          ],
+          "thermal_management_trans_count": [
+            0,
+            0
+          ],
+          "timestamp": "2022-04-21T16:13:25+00:00",
+          "unsafe_shutdowns": 31,
+          "used_capacity": -1,
+          "warning_temp_threshold": 357,
+          "warning_temp_time": 0
+        }
+      },
+      {
+        "hw_nvme_storage_physical": {
+          "bus_info": "0000:02:00.0",
+          "firmware_revision": "HPS0",
+          "model": "SK hynix PC711 HFS001TDE9X073N",
+          "serial_number": "ABCDE",
+          "state": "added",
+          "sub_system_id": "0x1c5c",
+          "vendor_id": "0x1c5c"
+        }
+      },
+      {
+        "hw_nvme_storage_logical": {
+          "node_id": "",
+          "partitions": [
+            {
+              "file_system": "vfat",
+              "flags": [],
+              "name": "",
+              "number": 1,
+              "size": 1048576
+            },
+            {
+              "file_system": "vfat",
+              "flags": [],
+              "name": "",
+              "number": 2,
+              "size": 8388608
+            },
+            {
+              "file_system": "crypto_LUKS",
+              "flags": [],
+              "name": "",
+              "number": 3,
+              "size": 1990969342
+            }
+          ],
+          "serial_number": "ABCDE"
+        }
+      },
+      {
+        "hw_nvme_smart_log": {
+          "available_spare": 100,
+          "available_spare_threshold": 5,
+          "controller_busy_time": 88,
+          "critical_composite_temp_threshold": 358,
+          "critical_composite_temp_time": 0,
+          "critical_warning": 0,
+          "data_units_read": 10407114,
+          "data_units_written": 3262640,
+          "endurance_critical_warning": 0,
+          "host_read_commands": 116025352,
+          "host_write_commands": 71889251,
+          "media_errors": -1,
+          "num_err_log_entries": 0,
+          "nvme_version": "1.3",
+          "percentage_used": 0,
+          "power_cycles": 110,
+          "power_on_hours": 1052,
+          "serial_number": "ABCDE",
+          "temp_sensor": [
+            306,
+            308
+          ],
+          "thermal_management_total_time": [
+            0,
+            0
+          ],
+          "thermal_management_trans_count": [
+            0,
+            0
+          ],
+          "timestamp": "2022-04-21T16:13:28+00:00",
+          "unsafe_shutdowns": 31,
+          "used_capacity": -1,
+          "warning_temp_threshold": 357,
+          "warning_temp_time": 0
+        }
+      }
+    ],
+    "data_header": {
+      "consents": [
+        "prodsupport.device.telemetry.unmanaged.product_improvement.ps"
+      ],
+      "data_provider": {
+        "app_name": "hp-vendor",
+        "app_version": "0.1.0",
+        "os_name": "Pop!_OS",
+        "os_version": "22.04 LTS"
+      },
+      "ids": {
+        "device_base_board_id": "8A78",
+        "device_bios_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "device_sku": "1234567#ABA",
+        "device_sn": "0000000000",
+        "os_install_uuid": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      },
+      "timestamp": "2022-04-21T16:13:32+00:00"
+    }
+  }
+]
