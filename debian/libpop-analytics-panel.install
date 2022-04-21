@@ -1,2 +1,3 @@
 usr/lib/libpop_analytics_panel.so
 usr/lib/pkgconfig/pop_analytics_panel.pc
+data/icons usr/share
