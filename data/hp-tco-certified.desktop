@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=xdg-open https://tcocertified.com/your-product/
+Icon=hp-tco-certified
+Name=TCO Certified
+Type=Application
