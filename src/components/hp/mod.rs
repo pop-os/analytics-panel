@@ -18,10 +18,8 @@ use relm::StreamHandle;
 
 use panel::Message as PanelMessage;
 use relm::Sender;
-use std::collections::HashMap;
 use std::fs;
 use std::io::{self, Read};
-use std::str::FromStr;
 
 pub enum Status {
     Success,
@@ -89,31 +87,6 @@ async fn download(sender: Sender<PanelMessage>) -> Result<(), hp_vendor_client::
     .await
 }
 
-pub fn purpose_for_locale(
-    mut purposes: HashMap<String, hp_vendor_client::DataCollectionPurpose>,
-) -> (String, String, hp_vendor_client::DataCollectionPurpose) {
-    let locale = locale_config::Locale::current();
-    let mut region = None;
-    for i in locale.tags_for("messages") {
-        if let Ok(identifier) = unic_langid::LanguageIdentifier::from_str(&i.to_string()) {
-            let language = identifier.language.as_str();
-            if region.is_none() {
-                if let Some(new_region) = identifier.region {
-                    region = Some(new_region.as_str().to_owned());
-                }
-            }
-            if let Some(purpose) = purposes.remove(language) {
-                // Is this a reasonable default?
-                let region = region.unwrap_or_else(String::new);
-                return (language.to_string(), region, purpose);
-            }
-        }
-    }
-    // Assume `en` is always a valid locale, and use as fallback
-    let region = region.unwrap_or_else(String::new);
-    ("en".to_string(), region, purposes.remove("en").unwrap())
-}
-
 pub struct PurposeAndOpt {
     language: String,
     region: String,
@@ -125,8 +98,8 @@ async fn purpose_and_opted(fetch: bool) -> Result<PurposeAndOpt, hp_vendor_clien
     let pool = glib::ThreadPool::shared(None).unwrap();
     pool.push_future(move || {
         let res = hp_vendor_client::purposes(fetch)?;
-        let opted = res.consent.is_some();
-        let (language, region, purpose) = purpose_for_locale(res.purposes);
+        let opted = res.consent.map_or(false, |consent| consent.opt_in);
+        let (language, region, purpose) = hp_vendor_client::purpose_for_locale(res.purposes);
         Ok(PurposeAndOpt {
             language,
             region,
@@ -145,12 +118,8 @@ async fn toggle(
 ) -> Result<(), hp_vendor_client::Error> {
     let pool = glib::ThreadPool::shared(None).unwrap();
     pool.push_future(move || {
-        if enable {
-            let (language, region, purpose_id, version) = purpose;
-            hp_vendor_client::consent(&language, &region, &purpose_id, &version)
-        } else {
-            hp_vendor_client::disable()
-        }
+        let (language, region, purpose_id, version) = purpose;
+        hp_vendor_client::consent(&language, &region, &purpose_id, &version, enable)
     })
     .unwrap()
     .await

@@ -579,12 +579,14 @@ dependencies = [
 [[package]]
 name = "hp-vendor-client"
 version = "0.1.0"
-source = "git+https://github.com/pop-os/hp-vendor#5a1d60e8b1345cdc45bb495a1c525b926e4a7544"
+source = "git+https://github.com/pop-os/hp-vendor?branch=hp-vendor-opt-out_jammy#8096ce5692263959ed7ea8f8f0fafa118e3ad698"
 dependencies = [
+ "locale_config",
  "once_cell",
  "serde",
  "serde_json",
  "toml",
+ "unic-langid",
 ]
 
 [[package]]
@@ -936,13 +938,11 @@ dependencies = [
  "i18n-embed",
  "i18n-embed-fl",
  "libhandy",
- "locale_config",
  "once_cell",
  "relm",
  "relm-derive",
  "rust-embed",
  "serde_json",
- "unic-langid",
 ]
 
 [[package]]

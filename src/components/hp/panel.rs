@@ -243,7 +243,7 @@ impl relm::Widget for Widget {
         });
 
         let (language, region, purpose) =
-            super::purpose_for_locale(hp_vendor_client::static_purposes());
+            hp_vendor_client::purpose_for_locale(hp_vendor_client::static_purposes());
 
         Model {
             _channel,
