@@ -4,7 +4,7 @@
 use crate::fl;
 use gtk::prelude::*;
 use relm::Channel;
-use std::future::Future;
+use std::{future::Future, process::Command};
 
 use super::dialog::{self, Variant};
 
@@ -47,6 +47,7 @@ pub enum Message {
     DownloadComplete(bool),
     DownloadProgress(f32),
     OpenDataDir,
+    OpenSupportPanel,
     PurposeAndOpt(super::PurposeAndOpt),
     Toggle,
     ToggleSensitive,
@@ -66,6 +67,12 @@ impl Widget {
                         || &err.endpoint == "DataDelete"
                     {
                         stream.emit(dialog::Message::Update(dialog::Variant::NoDataFound));
+                        return;
+                    } else if err.code == 404 && &err.endpoint == "Token" {
+                        stream.emit(dialog::Message::Update(dialog::Variant::NotEnrolled));
+                        return;
+                    } else if err.code == 400 && &err.endpoint == "Token" {
+                        stream.emit(dialog::Message::Update(dialog::Variant::DeviceIdInvalid));
                         return;
                     }
                 } else if let hp_vendor_client::Error::Reqwest(_message) = &err {
@@ -198,6 +205,10 @@ impl relm::Widget for Widget {
                 if let Some(analytics_dir) = super::analytics_dir() {
                     crate::misc::xdg_open(analytics_dir);
                 }
+            }
+
+            Message::OpenSupportPanel => {
+                let _ = Command::new("gnome-control-center").arg("support").spawn();
             }
 
             Message::PurposeAndOpt(super::PurposeAndOpt {

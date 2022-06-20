@@ -33,3 +33,7 @@ download-option-downloading = Downloading data archive
 data-downloaded-header = Download Data
 data-downloaded-description = Data has been downloaded
 open-folder = Open Folder
+not-enrolled-description = An error occurred in our system that is preventing this device from being recognized.
+                           Please contact support to resolve this issue.
+open-support-panel = Open Support Panel
+device-id-invalid-description = This device is not recognized by our system. The device IDs do not match the expected format.
