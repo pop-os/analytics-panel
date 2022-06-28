@@ -32,6 +32,8 @@ pub enum Variant {
     Error(hp_vendor_client::Error),
     NoDataFound,
     NoInternet,
+    NotEnrolled,
+    DeviceIdInvalid,
 }
 
 impl Widget {
@@ -115,6 +117,24 @@ impl Widget {
         );
     }
 
+    fn not_enrolled_view(&self) {
+        self.configure_view(
+            &fl!("error-header"),
+            &fl!("not-enrolled-description"),
+            &fl!("close"),
+            Some(&fl!("open-support-panel")),
+        );
+    }
+
+    fn device_id_error_view(&self) {
+        self.configure_view(
+            &fl!("error-header"),
+            &fl!("device-id-invalid-description"),
+            &fl!("close"),
+            None,
+        );
+    }
+
     fn send(&self, message: panel::Message) {
         let _ = self.model.sender.emit(message);
     }
@@ -128,6 +148,8 @@ impl Widget {
                 Variant::NoDataFound => self.no_data_found_view(),
                 Variant::NoInternet => self.no_internet_view(),
                 Variant::DataDownloaded => self.data_downloaded_view(),
+                Variant::NotEnrolled => self.not_enrolled_view(),
+                Variant::DeviceIdInvalid => self.device_id_error_view(),
             }
 
             self.model.variant = Some(variant);
@@ -145,6 +167,7 @@ impl relm::Widget for Widget {
                     Some(Variant::DeleteData) => self.send(panel::Message::Delete),
                     Some(Variant::NoInternet) => self.send(panel::Message::TryAgain),
                     Some(Variant::DataDownloaded) => self.send(panel::Message::OpenDataDir),
+                    Some(Variant::NotEnrolled) => self.send(panel::Message::OpenSupportPanel),
                     _ => (),
                 }
 
@@ -177,6 +200,8 @@ impl relm::Widget for Widget {
             orientation: gtk::Orientation::Vertical,
             spacing: 24,
             margin_top: 8,
+            margin_start: 8,
+            margin_end: 8,
 
             #[name="header"]
             gtk::Label {
