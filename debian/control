@@ -19,6 +19,7 @@ Architecture: amd64 arm64
 Depends:
   ${misc:Depends},
   ${shlibs:Depends}
+Conflicts: pop-hp-vendor (<< 0.2.0~)
 Description: Pop desktop settings widget library
  Shared library for C which provides the Pop!_OS analytics panel as a GTK widget.
 

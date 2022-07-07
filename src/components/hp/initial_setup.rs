@@ -36,14 +36,18 @@ impl relm::Widget for Widget {
 
         self.widgets.title.style_context().add_class("h1");
 
-        self.widgets.title.set_markup(&format!("<b>{}</b>", fl!("hp-dev-one-analytics")));
+        self.widgets
+            .title
+            .set_markup(&format!("<b>{}</b>", fl!("hp-dev-one-analytics")));
 
         self.widgets
             .link
             .style_context()
             .add_class("analytics-link");
 
-        self.widgets.sample_title.set_markup(&format!("<b>{}</b>", fl!("data-sample")));
+        self.widgets
+            .sample_title
+            .set_markup(&format!("<b>{}</b>", fl!("data-sample")));
 
         self.widgets
             .agree
@@ -54,7 +58,6 @@ impl relm::Widget for Widget {
             .settings_notice
             .style_context()
             .add_class("dim-label");
-
     }
 
     fn model(relm: &relm::Relm<Self>, callback: Box<dyn Fn(bool)>) -> Model {
@@ -65,7 +68,7 @@ impl relm::Widget for Widget {
         });
 
         let (language, region, purpose) =
-            super::purpose_for_locale(hp_vendor_client::static_purposes());
+            hp_vendor_client::purpose_for_locale(hp_vendor_client::static_purposes());
 
         Model {
             callback: Rc::from(callback),
