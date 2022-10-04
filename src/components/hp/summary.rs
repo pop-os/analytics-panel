@@ -35,7 +35,7 @@ impl relm::Widget for Widget {
             .add_class("analytics-link");
     }
 
-    fn model(relm: &relm::Relm<Self>, _: ()) -> Model {
+    fn model(_relm: &relm::Relm<Self>, _: ()) -> Model {
         Model
     }
 

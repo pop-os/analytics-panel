@@ -54,7 +54,7 @@ pub extern "C" fn pop_analytics_panel_eula_attach(c_container: *mut GtkContainer
 pub extern "C" fn pop_analytics_panel_initial_setup_attach(
     c_container: *mut GtkContainer,
     callback_fn: extern "C" fn(usize, bool),
-    callback_data: usize
+    callback_data: usize,
 ) {
     let container;
 
@@ -63,9 +63,12 @@ pub extern "C" fn pop_analytics_panel_initial_setup_attach(
         container = gtk::Container::from_glib_none(c_container);
     }
 
-    attach_initial_setup(&container, Box::new(move |agreed| {
-        (callback_fn)(callback_data, agreed);
-    }));
+    attach_initial_setup(
+        &container,
+        Box::new(move |agreed| {
+            (callback_fn)(callback_data, agreed);
+        }),
+    );
 }
 
 #[no_mangle]

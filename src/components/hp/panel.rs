@@ -89,7 +89,7 @@ impl Widget {
         let tx = self.model.background.clone();
         self.spawn_and_handle_err(async move {
             let res = super::delete().await;
-            tx.send(Message::DeleteComplete(res.is_ok()));
+            let _res = tx.send(Message::DeleteComplete(res.is_ok()));
             res
         });
     }
@@ -108,7 +108,7 @@ impl Widget {
         let tx = self.model.background.clone();
         self.spawn_and_handle_err(async move {
             let res = super::toggle(purpose, enable).await;
-            tx.send(Message::ToggleSensitive);
+            let _res = tx.send(Message::ToggleSensitive);
             res
         });
     }
@@ -133,7 +133,7 @@ impl relm::Widget for Widget {
         let tx = self.model.background.clone();
         glib::MainContext::default().spawn_local(async move {
             if let Ok(purpose_and_opt) = super::purpose_and_opted(false).await {
-                tx.send(Message::PurposeAndOpt(purpose_and_opt));
+                let _res = tx.send(Message::PurposeAndOpt(purpose_and_opt));
             } else {
                 // TODO? Shouldn't happen if hp-vendor installed correctly
             }

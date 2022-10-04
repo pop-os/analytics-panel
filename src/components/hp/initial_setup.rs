@@ -1,15 +1,12 @@
 use crate::fl;
 
-use concat_in_place::strcat;
 use gtk::prelude::*;
 use std::rc::Rc;
 
 pub struct Model {
     callback: Rc<dyn Fn(bool)>,
-    background: relm::Sender<Message>,
     purpose: (String, String, String, String),
     purpose_statement: String,
-    relm: relm::Relm<Widget>,
 }
 
 #[derive(relm_derive::Msg)]
@@ -36,14 +33,18 @@ impl relm::Widget for Widget {
 
         self.widgets.title.style_context().add_class("h1");
 
-        self.widgets.title.set_markup(&format!("<b>{}</b>", fl!("hp-dev-one-analytics")));
+        self.widgets
+            .title
+            .set_markup(&format!("<b>{}</b>", fl!("hp-dev-one-analytics")));
 
         self.widgets
             .link
             .style_context()
             .add_class("analytics-link");
 
-        self.widgets.sample_title.set_markup(&format!("<b>{}</b>", fl!("data-sample")));
+        self.widgets
+            .sample_title
+            .set_markup(&format!("<b>{}</b>", fl!("data-sample")));
 
         self.widgets
             .agree
@@ -54,13 +55,12 @@ impl relm::Widget for Widget {
             .settings_notice
             .style_context()
             .add_class("dim-label");
-
     }
 
     fn model(relm: &relm::Relm<Self>, callback: Box<dyn Fn(bool)>) -> Model {
         let stream = relm.stream().clone();
 
-        let (_channel, sender) = relm::Channel::new(move |message| {
+        let (_channel, _sender) = relm::Channel::new(move |message| {
             stream.emit(message);
         });
 
@@ -69,10 +69,8 @@ impl relm::Widget for Widget {
 
         Model {
             callback: Rc::from(callback),
-            background: sender,
             purpose: (language, region, purpose.purpose_id, purpose.version),
             purpose_statement: purpose.statement,
-            relm: relm.clone(),
         }
     }
 
@@ -82,7 +80,7 @@ impl relm::Widget for Widget {
                 let purpose = self.model.purpose.clone();
                 let callback = self.model.callback.clone();
                 glib::MainContext::default().spawn_local(async move {
-                    super::toggle(purpose, true).await;
+                    let _value = super::toggle(purpose, true).await;
                     (callback)(true);
                 });
             }
@@ -91,7 +89,7 @@ impl relm::Widget for Widget {
                 let purpose = self.model.purpose.clone();
                 let callback = self.model.callback.clone();
                 glib::MainContext::default().spawn_local(async move {
-                    super::toggle(purpose, false).await;
+                    let _value = super::toggle(purpose, false).await;
                     (callback)(false);
                 });
             }
@@ -138,7 +136,7 @@ impl relm::Widget for Widget {
                 min_content_height: 200,
                 vscrollbar_policy: gtk::PolicyType::Always,
 
-                #[name="sample_text"]
+                // #[name="sample_text"]
                 gtk::TextView {
                     buffer: Some(&super::sample_buffer()),
                     cursor_visible: false,
@@ -153,7 +151,7 @@ impl relm::Widget for Widget {
 
             gtk::Separator {},
 
-            #[name="purpose_statement"]
+            // #[name="purpose_statement"]
             gtk::Label {
                 label: &self.model.purpose_statement,
             },
@@ -163,7 +161,7 @@ impl relm::Widget for Widget {
                 orientation: gtk::Orientation::Horizontal,
                 spacing: 8,
 
-                #[name="decline"]
+                // #[name="decline"]
                 gtk::Button {
                     label: &fl!("decline-and-continue"),
                     clicked => Message::Decline,
