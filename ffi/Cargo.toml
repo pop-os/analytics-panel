@@ -12,12 +12,12 @@ crate-type = [ "cdylib"]
 cdylib-link-lines = "0.1.4"
 
 [dependencies]
-glib = "0.15.5"
-gtk = "0.15.3"
+glib = "0.15.12"
+gtk = "0.15.5"
 gtk-sys = "0.15.3"
-libc = "0.2.118"
+libc = "0.2.134"
 relm = "0.23.0"
-i18n-embed = "0.13.3"
+i18n-embed = "0.13.4"
 
 [dependencies.pop-analytics-panel]
 path = "../"

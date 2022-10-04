@@ -3,22 +3,15 @@
 
 use crate::fl;
 
-use concat_in_place::strcat;
 use gtk::prelude::*;
 
-use std::{
-    env,
-    fs::OpenOptions,
-    io::Write,
-    os::unix::fs::OpenOptionsExt,
-    process::Command,
-};
+use std::{fs::OpenOptions, io::Write, os::unix::fs::OpenOptionsExt, process::Command};
 
 // Create TCO certified desktop file on supported hardware
 fn tco_certified() -> Result<(), String> {
     let desktop_dir = match dirs::desktop_dir() {
         Some(some) => some,
-        None => return Err(format!("failed to get desktop directory")),
+        None => return Err(String::from("failed to get desktop directory")),
     };
 
     let shortcut_path = desktop_dir.join("hp-tco-certified.desktop");
@@ -28,12 +21,9 @@ fn tco_certified() -> Result<(), String> {
         .write(true)
         .mode(0o775)
         .open(&shortcut_path)
-        .map_err(|err| {
-            format!("failed to open {}: {}", shortcut_path.display(), err)
-        })?
-        .write_all(shortcut_data).map_err(|err| {
-            format!("failed to write {}: {}", shortcut_path.display(), err)
-        })?;
+        .map_err(|err| format!("failed to open {}: {}", shortcut_path.display(), err))?
+        .write_all(shortcut_data)
+        .map_err(|err| format!("failed to write {}: {}", shortcut_path.display(), err))?;
 
     let status = Command::new("gio")
         .arg("set")
@@ -42,10 +32,18 @@ fn tco_certified() -> Result<(), String> {
         .arg("true")
         .status()
         .map_err(|err| {
-            format!("failed to set {} as trusted: {}", shortcut_path.display(), err)
+            format!(
+                "failed to set {} as trusted: {}",
+                shortcut_path.display(),
+                err
+            )
         })?;
-    if ! status.success() {
-        return Err(format!("failed to set {} as trusted: {}", shortcut_path.display(), status));
+    if !status.success() {
+        return Err(format!(
+            "failed to set {} as trusted: {}",
+            shortcut_path.display(),
+            status
+        ));
     }
 
     Ok(())
@@ -61,12 +59,14 @@ impl relm::Widget for Widget {
     fn init_view(&mut self) {
         self.widgets.title.style_context().add_class("h1");
 
-        self.widgets.title.set_markup(&format!("<b>{}</b>", fl!("eula")));
+        self.widgets
+            .title
+            .set_markup(&format!("<b>{}</b>", fl!("eula")));
 
-        self.widgets.text.buffer().map(|buffer| {
+        if let Some(buffer) = self.widgets.text.buffer() {
             let eula_markup = include_str!("../../../data/hp-eula.md");
             buffer.insert_markup(&mut buffer.start_iter(), eula_markup);
-        });
+        }
 
         match tco_certified() {
             Ok(()) => (),

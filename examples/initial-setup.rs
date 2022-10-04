@@ -27,14 +27,17 @@ fn gtk() -> anyhow::Result<()> {
         let window = gtk::ApplicationWindow::new(app);
 
         let app = app.clone();
-        attach_initial_setup(window.upcast_ref(), Box::new(move |agreed| {
-            if agreed {
-                println!("Agreed");
-            } else {
-                println!("Declined");
-            }
-            app.quit();
-        }));
+        attach_initial_setup(
+            window.upcast_ref(),
+            Box::new(move |agreed| {
+                if agreed {
+                    println!("Agreed");
+                } else {
+                    println!("Declined");
+                }
+                app.quit();
+            }),
+        );
 
         window.show_all();
 
